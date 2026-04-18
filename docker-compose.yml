@@ -5,7 +5,7 @@ services:
     build: .
     container_name: emtk-www
     ports:
-      - "8080:80" # Maps port 8080 of the host to port 80 of the container
+      - "8080:88" # Maps port 8080 of the host to port 80 of the container
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
