@@ -5,7 +5,7 @@ FROM nginx:alpine
 COPY . /usr/share/nginx/html
 
 # Expose port 80 to the outside
-EXPOSE 80
+EXPOSE 88
 
 # Start Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
