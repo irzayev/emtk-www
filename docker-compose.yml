@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  emtk-website:
+    build: .
+    container_name: emtk-website
+    ports:
+      - "80:80" # Maps port 80 of the host to port 80 of the container
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
