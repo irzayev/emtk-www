@@ -1,939 +1,328 @@
 <!DOCTYPE html>
-<html lang="az">
+<html lang="ru">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="eMTK - Bina idarəçiliyinin tam rəqəmsal platforması. İstifadəçilər, tariflər, hesab-fakturalar, ödənişlər, hesabatlar və bildirişlər." />
-    <title>eMTK - Bina İdarəçiliyi Portalı</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        content="eMTK — цифровая среда для управления домом: жильцы, счета, платежи и отчёты в одном спокойном интерфейсе." />
+    <title>eMTK — портал управления домом</title>
+    <link rel="icon" href="static/demo/favicon.png" type="image/png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
         rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "outline": "#737783", "secondary-container": "#d3e1f5", "inverse-on-surface": "#f0f1f2", "inverse-surface": "#2e3132", "error-container": "#ffdad6", "surface-container-highest": "#e1e3e4", "background": "#f8f9fa", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#abc7ff", "primary": "#00346f", "on-surface-variant": "#424751", "on-background": "#191c1d", "on-tertiary": "#ffffff", "surface-tint": "#255dad", "on-error-container": "#93000a", "secondary": "#525f70", "on-error": "#ffffff", "outline-variant": "#c2c6d3", "surface-container": "#edeeef", "on-primary": "#ffffff", "primary-fixed": "#d7e2ff", "surface-dim": "#d9dadb", "error": "#ba1a1a", "secondary-fixed-dim": "#bac8db", "on-primary-container": "#9bbdff", "surface": "#f8f9fa", "surface-bright": "#f8f9fa", "on-surface": "#191c1d", "surface-container-high": "#e7e8e9", "inverse-primary": "#abc7ff", "surface-container-low": "#f3f4f5", "surface-variant": "#e1e3e4", "on-secondary-container": "#576475", "on-secondary": "#ffffff", "tertiary": "#5f2200", "primary-container": "#004a99", "tertiary-fixed": "#ffdbcc", "secondary-container": "#d3e1f5" }, borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" }, fontFamily: { headline: ["Manrope", "sans-serif"], body: ["Inter", "sans-serif"], label: ["Inter", "sans-serif"] } } } }
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        surface: '#f6fafe',
+                        'surface-low': '#f0f4f8',
+                        'surface-high': '#e4e9ed',
+                        ink: '#171c1f',
+                        muted: '#57657a',
+                        primary: '#000000',
+                        accent: '#00164e',
+                        line: '#c6c6cd',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
+                    },
+                    borderRadius: { card: '1rem', pill: '9999px' },
+                },
+            },
+        };
     </script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: Inter, system-ui, sans-serif;
         }
 
         h1,
         h2,
         h3,
-        h4,
-        h5,
-        h6,
-        .font-headline {
-            font-family: 'Manrope', sans-serif;
+        .font-display {
+            font-family: Manrope, Inter, system-ui, sans-serif;
+            letter-spacing: -0.02em;
         }
 
-        html {
-            scroll-behavior: smooth;
+        .mesh-bg {
+            background-color: #f6fafe;
+            background-image:
+                radial-gradient(ellipse 80% 55% at 15% -10%, rgba(0, 22, 78, 0.09), transparent),
+                radial-gradient(ellipse 60% 45% at 100% 0%, rgba(0, 0, 0, 0.04), transparent);
         }
 
-        .nav-link {
-            transition: color .2s, border-color .2s;
+        .browser-chrome {
+            background: linear-gradient(180deg, #f0f4f8 0%, #e8eef3 100%);
+            border-bottom: 1px solid rgba(198, 198, 205, 0.6);
         }
 
-        .nav-link.active {
-            color: #00346f;
-            font-weight: 700;
-            border-bottom: 2px solid #00346f;
+        .demo-shot {
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-up {
-            animation: fadeUp .6s ease both;
-        }
-
-        .delay-1 {
-            animation-delay: .1s;
-        }
-
-        .delay-2 {
-            animation-delay: .2s;
-        }
-
-        .delay-3 {
-            animation-delay: .3s;
-        }
-
-        .card-hover {
-            transition: transform .25s, box-shadow .25s;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(0, 52, 111, .1);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            font-family: 'Manrope', sans-serif;
-            background: linear-gradient(135deg, #00346f, #004a99);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .demo-shot:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 24px 48px rgba(0, 22, 78, 0.12);
         }
     </style>
 </head>
 
-<body class="bg-background text-on-background antialiased min-h-screen flex flex-col overflow-x-hidden">
+<body class="mesh-bg text-ink antialiased min-h-screen flex flex-col">
 
-    <!-- NAV -->
-    <header id="top"
-        class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-surface-container-high/50 shadow-sm">
-        <div class="flex justify-between items-center px-6 md:px-10 py-4 max-w-screen-xl mx-auto">
-            <a href="#hero" class="flex items-center gap-2 text-2xl font-black tracking-tight text-primary font-headline">e<span class="text-primary-container">MTK</span><span class="text-[10px] font-bold uppercase tracking-widest bg-primary/10 text-primary px-2 py-0.5 rounded-full border border-primary/20 align-middle" style="font-size:10px;letter-spacing:.1em;">BETA</span></a>
-            <nav class="hidden md:flex gap-6 items-center font-body text-sm font-medium">
-                <a href="#features" class="nav-link text-secondary hover:text-primary pb-1">Xüsusiyyətlər</a>
-                <a href="#stats" class="nav-link text-secondary hover:text-primary pb-1">Statistika</a>
-                <a href="#modules" class="nav-link text-secondary hover:text-primary pb-1">Modullar</a>
-                <a href="#notifications" class="nav-link text-secondary hover:text-primary pb-1">Bildirişlər</a>
-                <a href="#contact" class="nav-link text-secondary hover:text-primary pb-1">Əlaqə</a>
+    <header
+        class="sticky top-0 z-40 border-b border-line/40 bg-surface/85 backdrop-blur-md">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
+            <a href="#top" class="flex items-center gap-2.5 no-underline text-ink">
+                <span
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-line/60 shadow-sm overflow-hidden">
+                    <img src="static/demo/favicon.png" alt="" class="h-7 w-7 object-contain" width="28" height="28" />
+                </span>
+                <span class="font-display font-extrabold text-lg tracking-tight">e<span class="text-accent">MTK</span></span>
+            </a>
+            <nav class="hidden sm:flex items-center gap-8 text-sm font-medium text-muted">
+                <a href="#idea" class="hover:text-primary transition-colors">Идея</a>
+                <a href="#demo" class="hover:text-primary transition-colors">Интерфейс</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Связь</a>
             </nav>
-            <div class="flex items-center gap-3">
-                <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-surface-container-low transition-colors">
-                    <span class="material-symbols-outlined text-secondary">menu</span>
-                </button>
-                <a href="#contact"
-                    class="hidden md:inline-block bg-gradient-to-br from-primary to-primary-container text-white font-medium text-sm px-5 py-2.5 rounded-DEFAULT shadow-[0_4px_16px_rgba(0,52,111,0.2)] hover:shadow-[0_6px_24px_rgba(0,52,111,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
-                    Əlaqə saxla
-                </a>
-            </div>
-        </div>
-        <!-- Mobile menu -->
-        <div id="mobileMenu"
-            class="hidden md:hidden flex-col gap-1 px-6 pb-4 bg-white border-t border-surface-container-high">
-            <a href="#features"
-                class="block py-2.5 text-sm font-medium text-secondary hover:text-primary transition-colors">Xüsusiyyətlər</a>
-            <a href="#stats"
-                class="block py-2.5 text-sm font-medium text-secondary hover:text-primary transition-colors">Statistika</a>
-            <a href="#modules"
-                class="block py-2.5 text-sm font-medium text-secondary hover:text-primary transition-colors">Modullar</a>
-            <a href="#notifications"
-                class="block py-2.5 text-sm font-medium text-secondary hover:text-primary transition-colors">Bildirişlər</a>
-            <a href="#contact"
-                class="block py-2.5 text-sm font-medium text-secondary hover:text-primary transition-colors">Əlaqə</a>
+            <a href="mailto:info@emtk.az"
+                class="text-sm font-semibold rounded-full bg-primary text-white px-4 py-2 hover:bg-accent transition-colors shadow-sm">
+                Написать
+            </a>
         </div>
     </header>
 
-    <main class="flex flex-col gap-0 pt-20">
-        <!-- HERO -->
-        <section id="hero"
-            class="min-h-screen flex items-center bg-gradient-to-br from-background via-surface-container-low to-secondary-container/20 px-6 md:px-10 py-24">
-            <div class="max-w-screen-xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
-                <div class="flex flex-col gap-8 animate-fade-up">
-                    <div
-                        class="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full bg-white border border-outline-variant/30 text-xs font-semibold text-secondary uppercase tracking-wider shadow-sm">
-                        <span class="material-symbols-outlined text-[14px] text-primary"
-                            style="font-variation-settings:'FILL' 1;">apartment</span>
-                        Bina İdarəçiliyi Portalı
-                    </div>
-                    <h1
-                        class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-on-surface font-headline leading-[1.08] tracking-tight">
-                        Bina idarəçiliyini<br /><span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">rəqəmsal
-                            edin.</span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed">
-                        eMTK istifadəçilər, mənzillər, tariflər, hesab-fakturalar, ödənişlər, xərclər, hesabatlar, email
-                        və WhatsApp bildirişlərini vahid platformadan idarə edir.
+    <main id="top" class="flex-1">
+
+        <section class="max-w-5xl mx-auto px-5 sm:px-8 pt-16 pb-20 sm:pt-20 sm:pb-24">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="space-y-8">
+                    <p
+                        class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted border border-line/60 rounded-full px-3 py-1.5 bg-white/70">
+                        <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">apartment</span>
+                        Управление домом без хаоса в таблицах
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#modules"
-                            class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-DEFAULT font-semibold text-base hover:shadow-[0_8px_32px_rgba(0,52,111,0.3)] hover:scale-[1.02] transition-all flex items-center gap-2">
-                            Modulları Kəşf Et <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                    <h1 class="font-display text-4xl sm:text-5xl font-extrabold leading-[1.08] text-primary">
+                        Один портал — вся картина по дому: люди, счета, деньги, ясность.
+                    </h1>
+                    <p class="text-lg text-muted leading-relaxed max-w-md">
+                        eMTK собирает повседневные задачи УК в спокойный цифровой контур: кто живёт, что начислено,
+                        что оплачено и что осталось сделать. Меньше ручных звонков — больше предсказуемости для вас и доверия у жильцов.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#demo"
+                            class="inline-flex items-center gap-2 rounded-full bg-primary text-white px-6 py-3 text-sm font-semibold hover:bg-accent transition-colors shadow-md">
+                            Посмотреть визуал
+                            <span class="material-symbols-outlined text-lg" aria-hidden="true">arrow_downward</span>
                         </a>
                         <a href="#contact"
-                            class="bg-white text-primary border border-outline-variant/30 px-8 py-4 rounded-DEFAULT font-semibold text-base hover:bg-surface-container-low hover:shadow-md transition-all flex items-center gap-2">
-                            <span class="material-symbols-outlined text-lg">mail</span> Əlaqə
+                            class="inline-flex items-center gap-2 rounded-full border border-line bg-white/80 px-6 py-3 text-sm font-semibold text-ink hover:border-accent/40 transition-colors">
+                            Запросить разговор
                         </a>
                     </div>
-                    <div class="flex items-center gap-6 pt-4 border-t border-outline-variant/20">
-                        <div class="flex flex-col"><span
-                                class="text-2xl font-black text-primary font-headline">500+</span><span
-                                class="text-xs text-secondary">Mənzil</span></div>
-                        <div class="w-px h-8 bg-outline-variant/30"></div>
-                        <div class="flex flex-col"><span
-                                class="text-2xl font-black text-primary font-headline">12+</span><span
-                                class="text-xs text-secondary">Bina</span></div>
-                        <div class="w-px h-8 bg-outline-variant/30"></div>
-                        <div class="flex flex-col"><span
-                                class="text-2xl font-black text-primary font-headline">99%</span><span
-                                class="text-xs text-secondary">Uptime</span></div>
-                    </div>
                 </div>
-                <!-- Dashboard mockup -->
-                <div class="relative animate-fade-up delay-2 hidden lg:block">
+
+                <div class="relative">
                     <div
-                        class="bg-white rounded-2xl shadow-[0_24px_80px_rgba(0,52,111,0.15)] border border-outline-variant/20 overflow-hidden">
-                        <!-- Titlebar -->
-                        <div
-                            class="bg-surface-container-low px-4 py-3 flex items-center gap-2 border-b border-outline-variant/15">
-                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                            <span class="ml-4 text-xs text-secondary font-medium">eMTK — Əsas Panel</span>
+                        class="absolute -inset-4 rounded-card bg-gradient-to-br from-accent/5 via-transparent to-primary/5 blur-2xl -z-10"
+                        aria-hidden="true"></div>
+                    <figure
+                        class="demo-shot rounded-card border border-line/70 bg-white shadow-[0_8px_40px_rgba(0,22,78,0.08)] overflow-hidden">
+                        <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                            <span class="flex gap-1.5" aria-hidden="true">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
+                            </span>
+                            <span class="text-[11px] font-medium text-muted truncate flex-1 text-center">portal.emtk — вход</span>
                         </div>
-                        <div class="flex h-72">
-                            <!-- Sidebar -->
-                            <div class="w-40 bg-primary p-4 flex flex-col gap-2">
-                                <div class="text-white/40 text-[10px] uppercase tracking-wider mb-2 font-semibold">Menyu
-                                </div>
-                                <div class="flex items-center gap-2 px-2 py-1.5 bg-white/20 rounded-md"><span
-                                        class="material-symbols-outlined text-white text-sm"
-                                        style="font-variation-settings:'FILL' 1;">dashboard</span><span
-                                        class="text-white text-xs font-medium">Panel</span></div>
-                                <div class="flex items-center gap-2 px-2 py-1.5 rounded-md"><span
-                                        class="material-symbols-outlined text-white/60 text-sm">groups</span><span
-                                        class="text-white/60 text-xs">Sakinlər</span></div>
-                                <div class="flex items-center gap-2 px-2 py-1.5 rounded-md"><span
-                                        class="material-symbols-outlined text-white/60 text-sm">receipt_long</span><span
-                                        class="text-white/60 text-xs">Fakturalar</span></div>
-                                <div class="flex items-center gap-2 px-2 py-1.5 rounded-md"><span
-                                        class="material-symbols-outlined text-white/60 text-sm">payments</span><span
-                                        class="text-white/60 text-xs">Ödənişlər</span></div>
-                                <div class="flex items-center gap-2 px-2 py-1.5 rounded-md"><span
-                                        class="material-symbols-outlined text-white/60 text-sm">bar_chart</span><span
-                                        class="text-white/60 text-xs">Hesabatlar</span></div>
-                            </div>
-                            <!-- Content -->
-                            <div class="flex-1 p-4 flex flex-col gap-3">
-                                <div class="grid grid-cols-3 gap-2">
-                                    <div class="bg-surface-container-low rounded-lg p-3">
-                                        <div class="text-[10px] text-secondary mb-1">Sakinlər</div>
-                                        <div class="text-lg font-black text-primary font-headline">248</div>
-                                    </div>
-                                    <div class="bg-secondary-container/40 rounded-lg p-3">
-                                        <div class="text-[10px] text-secondary mb-1">Bu ay</div>
-                                        <div class="text-lg font-black text-primary font-headline">₼ 18.4K</div>
-                                    </div>
-                                    <div class="bg-surface-container-low rounded-lg p-3">
-                                        <div class="text-[10px] text-secondary mb-1">Borc</div>
-                                        <div class="text-lg font-black text-red-500 font-headline">₼ 2.1K</div>
-                                    </div>
-                                </div>
-                                <div class="bg-surface-container-low rounded-lg p-3 flex-1">
-                                    <div class="text-[10px] text-secondary mb-2 font-semibold uppercase tracking-wide">
-                                        Son Ödənişlər</div>
-                                    <div class="space-y-2">
-                                        <div class="flex justify-between items-center">
-                                            <div class="flex items-center gap-2">
-                                                <div
-                                                    class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-[9px] text-primary font-bold">
-                                                    AM</div><span class="text-[11px] text-on-surface">Mənzil 14A</span>
-                                            </div><span class="text-[11px] text-green-600 font-semibold">₼ 85.00</span>
-                                        </div>
-                                        <div class="flex justify-between items-center">
-                                            <div class="flex items-center gap-2">
-                                                <div
-                                                    class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-[9px] text-secondary font-bold">
-                                                    RH</div><span class="text-[11px] text-on-surface">Mənzil 7B</span>
-                                            </div><span class="text-[11px] text-green-600 font-semibold">₼ 120.00</span>
-                                        </div>
-                                        <div class="flex justify-between items-center">
-                                            <div class="flex items-center gap-2">
-                                                <div
-                                                    class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-[9px] text-primary font-bold">
-                                                    ZK</div><span class="text-[11px] text-on-surface">Mənzil 3C</span>
-                                            </div><span class="text-[11px] text-red-500 font-semibold">Gözlənilir</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-surface-low">
+                            <img src="static/demo/portal-office.png" alt="Фрагмент визуальной среды портала eMTK"
+                                class="w-full h-full object-cover object-[center_30%] scale-[1.02]" loading="eager" width="1200" height="800" />
                         </div>
-                    </div>
-                    <!-- Floating card -->
-                    <div
-                        class="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-[0_8px_32px_rgba(0,52,111,0.15)] border border-outline-variant/20 flex items-center gap-3">
-                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center"><span
-                                class="material-symbols-outlined text-green-600 text-xl"
-                                style="font-variation-settings:'FILL' 1;">check_circle</span></div>
-                        <div>
-                            <div class="text-xs font-semibold text-on-surface">WhatsApp göndərildi</div>
-                            <div class="text-xs text-secondary">32 sakinə bildiriş</div>
-                        </div>
-                    </div>
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <!-- STATS -->
-        <section id="stats" class="py-24 px-6 md:px-10 bg-primary">
-            <div class="max-w-screen-xl mx-auto">
-                <div class="text-center mb-14">
-                    <span
-                        class="inline-block px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider mb-4">Nəticələr</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white font-headline">Rəqəmlər danışır</h2>
-                    <p class="text-white/60 mt-3 max-w-xl mx-auto">eMTK ilə idarə edilən binalar daha şəffaf, daha
-                        sürətli və daha səmərəli işləyir.</p>
+        <section id="idea" class="border-y border-line/50 bg-white/60">
+            <div class="max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+                <div class="max-w-2xl mb-14">
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-primary mb-4">
+                        Почему команды выбирают спокойный цифровой контур
+                    </h2>
+                    <p class="text-muted text-lg leading-relaxed">
+                        Когда данные живут в одном месте, исчезает «слепая зона» между бухгалтерией, диспетчером и жильцом.
+                        eMTK заточен под регулярный цикл: тарифы → начисления → напоминания → оплаты → отчётность.
+                    </p>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div
-                        class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/10 hover:bg-white/15 transition-colors">
-                        <div class="text-4xl font-black text-white font-headline mb-1">500+</div>
-                        <div class="text-white/60 text-sm">Qeydiyyatlı mənzil</div>
-                    </div>
-                    <div
-                        class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/10 hover:bg-white/15 transition-colors">
-                        <div class="text-4xl font-black text-white font-headline mb-1">12+</div>
-                        <div class="text-white/60 text-sm">Aktiv bina</div>
-                    </div>
-                    <div
-                        class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/10 hover:bg-white/15 transition-colors">
-                        <div class="text-4xl font-black text-white font-headline mb-1">98%</div>
-                        <div class="text-white/60 text-sm">Ödəniş toplanması</div>
-                    </div>
-                    <div
-                        class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/10 hover:bg-white/15 transition-colors">
-                        <div class="text-4xl font-black text-white font-headline mb-1">3x</div>
-                        <div class="text-white/60 text-sm">Daha sürətli hesabat</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURES -->
-        <section id="features" class="py-24 px-6 md:px-10 bg-background">
-            <div class="max-w-screen-xl mx-auto">
-                <div class="text-center mb-14">
-                    <span
-                        class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">İmkanlar</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-on-surface font-headline">Əməliyyatlarınız üçün tam
-                        nəzarət</h2>
-                    <p class="text-on-surface-variant mt-3 max-w-xl mx-auto">Bina idarəçiliyi üçün lazım olan hər şey —
-                        vahid sistemdə.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Card 1 -->
-                    <div
-                        class="card-hover bg-white rounded-xl p-8 border border-outline-variant/15 flex flex-col gap-5">
-                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-2xl"
-                                style="font-variation-settings:'FILL' 1;">groups</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold font-headline text-on-surface mb-2">İstifadəçilər və Mənzillər
-                            </h3>
-                            <p class="text-sm text-secondary leading-relaxed">Bütün sakinlərin tam profili, mənzil
-                                tarixi, sahiblik məlumatları və əlaqə nömrələri bir yerdə. Sürətli axtarış və filtrləmə
-                                ilə.</p>
-                        </div>
-                        <ul class="flex flex-col gap-2 mt-auto">
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Sakin profili
-                                və tarixçəsi</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Mənzil
-                                statusu və sahəsi</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Excel
-                                idxal/ixrac</li>
-                        </ul>
-                    </div>
-                    <!-- Card 2 -->
-                    <div
-                        class="card-hover bg-white rounded-xl p-8 border border-outline-variant/15 flex flex-col gap-5">
-                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
-                            <span class="material-symbols-outlined text-blue-600 text-2xl"
-                                style="font-variation-settings:'FILL' 1;">calculate</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold font-headline text-on-surface mb-2">Tariflər</h3>
-                            <p class="text-sm text-secondary leading-relaxed">Hər mənzil növü üçün ayrı tarif
-                                cədvəlləri. Kvadrat metrə görə, sabit məbləğ və ya kombinə hesablama üsulları.</p>
-                        </div>
-                        <ul class="flex flex-col gap-2 mt-auto">
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Çevik tarif
-                                konfiqurasiyası</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Mövsümi
-                                dəyişikliklər</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Endirim
-                                sistemi</li>
-                        </ul>
-                    </div>
-                    <!-- Card 3 -->
-                    <div
-                        class="card-hover bg-gradient-to-br from-primary to-primary-container rounded-xl p-8 flex flex-col gap-5">
-                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                            <span class="material-symbols-outlined text-white text-2xl"
-                                style="font-variation-settings:'FILL' 1;">receipt_long</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold font-headline text-white mb-2">Hesab-fakturalar</h3>
-                            <p class="text-sm text-white/70 leading-relaxed">Avtomatik aylıq faktura yaradılması. Bir
-                                kliklə bütün sakinlərə toplu faktura göndərin.</p>
-                        </div>
-                        <ul class="flex flex-col gap-2 mt-auto">
-                            <li class="flex items-center gap-2 text-sm text-white/80"><span
-                                    class="material-symbols-outlined text-green-300 text-base">check</span>Avtomatik
-                                hesablama</li>
-                            <li class="flex items-center gap-2 text-sm text-white/80"><span
-                                    class="material-symbols-outlined text-green-300 text-base">check</span>PDF
-                                generasiya</li>
-                            <li class="flex items-center gap-2 text-sm text-white/80"><span
-                                    class="material-symbols-outlined text-green-300 text-base">check</span>Toplu
-                                göndəriş</li>
-                        </ul>
-                    </div>
-                    <!-- Card 4 -->
-                    <div
-                        class="card-hover bg-white rounded-xl p-8 border border-outline-variant/15 flex flex-col gap-5">
-                        <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
-                            <span class="material-symbols-outlined text-green-600 text-2xl"
-                                style="font-variation-settings:'FILL' 1;">account_balance_wallet</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold font-headline text-on-surface mb-2">Ödənişlər</h3>
-                            <p class="text-sm text-secondary leading-relaxed">Nağd, bank köçürməsi və online ödənişlərin
-                                qeydiyyatı. Borc balansı avtomatik yenilənir.</p>
-                        </div>
-                        <ul class="flex flex-col gap-2 mt-auto">
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Çoxlu ödəniş
-                                üsulu</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Avtomatik
-                                qalıq hesabı</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Borc
-                                xatırlatmaları</li>
-                        </ul>
-                    </div>
-                    <!-- Card 5 -->
-                    <div
-                        class="card-hover bg-white rounded-xl p-8 border border-outline-variant/15 flex flex-col gap-5">
-                        <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center">
-                            <span class="material-symbols-outlined text-orange-500 text-2xl"
-                                style="font-variation-settings:'FILL' 1;">request_quote</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold font-headline text-on-surface mb-2">Xərclər</h3>
-                            <p class="text-sm text-secondary leading-relaxed">Binanın kommunal, texniki xidmət və digər
-                                xərclərinin tam uçotu. Kateqoriyalar üzrə analiz.</p>
-                        </div>
-                        <ul class="flex flex-col gap-2 mt-auto">
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Kateqoriyalar
-                                üzrə xərclər</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Təchizatçı
-                                reyestri</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Büdcə
-                                nəzarəti</li>
-                        </ul>
-                    </div>
-                    <!-- Card 6 -->
-                    <div
-                        class="card-hover bg-white rounded-xl p-8 border border-outline-variant/15 flex flex-col gap-5">
-                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center">
-                            <span class="material-symbols-outlined text-purple-600 text-2xl"
-                                style="font-variation-settings:'FILL' 1;">bar_chart</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold font-headline text-on-surface mb-2">Hesabatlar</h3>
-                            <p class="text-sm text-secondary leading-relaxed">Maliyyə hesabatları, borc reyestri,
-                                toplanma hesabatı. Tarixi müqayisə və trend analizi.</p>
-                        </div>
-                        <ul class="flex flex-col gap-2 mt-auto">
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Aylıq/İllik
-                                hesabatlar</li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Borc siyahısı
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary"><span
-                                    class="material-symbols-outlined text-green-500 text-base">check</span>Excel/PDF
-                                ixrac</li>
-                        </ul>
-                    </div>
+                <div class="grid sm:grid-cols-3 gap-6">
+                    <article class="rounded-card border border-line/60 bg-surface p-6 sm:p-7">
+                        <span class="material-symbols-outlined text-accent text-2xl mb-4" aria-hidden="true">hub</span>
+                        <h3 class="font-display font-bold text-lg mb-2">Единая точка правды</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Квартиры, собственники и роли в одной модели. Быстрый поиск и меньше ошибок при передаче смены.
+                        </p>
+                    </article>
+                    <article class="rounded-card border border-line/60 bg-surface p-6 sm:p-7">
+                        <span class="material-symbols-outlined text-accent text-2xl mb-4" aria-hidden="true">payments</span>
+                        <h3 class="font-display font-bold text-lg mb-2">Деньги под контролем</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Начисления и оплаты связаны между собой: баланс обновляется логично, а не «на глаз» в таблице.
+                        </p>
+                    </article>
+                    <article class="rounded-card border border-line/60 bg-surface p-6 sm:p-7">
+                        <span class="material-symbols-outlined text-accent text-2xl mb-4" aria-hidden="true">mark_chat_unread</span>
+                        <h3 class="font-display font-bold text-lg mb-2">Коммуникация без давления</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Письма и мессенджеры — как часть процесса, а не отдельная беготня после закрытия месяца.
+                        </p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- MODULES -->
-        <section id="modules" class="py-24 px-6 md:px-10 bg-surface-container-low">
-            <div class="max-w-screen-xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <section id="demo" class="max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+                <div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-primary mb-3">
+                        Кадры из реальной визуальной среды портала
+                    </h2>
+                    <p class="text-muted max-w-xl leading-relaxed">
+                        Ниже — материалы из рабочего проекта eMTK: фирменный знак и визуальный слой экрана входа,
+                        который жильцы и сотрудники видят каждый день. Тот же типографика и палитра, что и внутри приложения.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">Демо — широкий кадр</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/portal-office.png" alt="Широкий кадр визуала портала eMTK"
+                            class="w-full h-full object-cover object-center" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Спокойный фон и контрастная сетка — как в живом продукте: меньше отвлечений, больше фокуса на задаче.
+                    </figcaption>
+                </figure>
+
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">Демо — акцент на архитектуре</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/portal-office.png" alt="Деталь визуала портала eMTK"
+                            class="w-full h-full object-cover object-[70%_center] sm:scale-110" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Другой кроп того же кадра — чтобы показать глубину сцены и фотографическое качество интерфейса вокруг формы входа.
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="mt-10 flex flex-wrap items-center justify-center gap-6 rounded-card border border-dashed border-line bg-white/50 px-6 py-8">
+                <div class="flex items-center gap-3">
+                    <img src="static/demo/favicon.png" alt="Иконка eMTK" class="h-14 w-14 rounded-2xl shadow-md ring-1 ring-line/50" width="56" height="56" />
                     <div>
-                        <span
-                            class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">Sistem
-                            arxitekturası</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-on-surface font-headline mb-6">Tam inteqrasiyalı
-                            modul sistemi</h2>
-                        <p class="text-on-surface-variant mb-8 leading-relaxed">eMTK-nin bütün modulları bir-biri ilə
-                            sinxronizasiya olunur. Hesab-faktura yaradıldıqda avtomatik bildiriş göndərilir, ödəniş
-                            daxil olduqda balans yenilənir.</p>
-                        <div class="flex flex-col gap-4">
-                            <div
-                                class="flex items-start gap-4 p-4 bg-white rounded-xl border border-outline-variant/15 hover:border-primary/20 transition-colors">
-                                <div
-                                    class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <span class="material-symbols-outlined text-primary text-xl"
-                                        style="font-variation-settings:'FILL' 1;">sync</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-on-surface font-headline mb-1">Real-time
-                                        sinxronizasiya</h4>
-                                    <p class="text-sm text-secondary">Bütün dəyişikliklər anında bütün istifadəçilər
-                                        üçün əks olunur.</p>
-                                </div>
-                            </div>
-                            <div
-                                class="flex items-start gap-4 p-4 bg-white rounded-xl border border-outline-variant/15 hover:border-primary/20 transition-colors">
-                                <div
-                                    class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <span class="material-symbols-outlined text-blue-600 text-xl"
-                                        style="font-variation-settings:'FILL' 1;">database</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-on-surface font-headline mb-1">Məlumat təhlükəsizliyi
-                                    </h4>
-                                    <p class="text-sm text-secondary">Bütün məlumatlar şifrələnmiş formada saxlanılır.
-                                        Gündəlik ehtiyat nüsxə.</p>
-                                </div>
-                            </div>
-                            <div
-                                class="flex items-start gap-4 p-4 bg-white rounded-xl border border-outline-variant/15 hover:border-primary/20 transition-colors">
-                                <div
-                                    class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <span class="material-symbols-outlined text-green-600 text-xl"
-                                        style="font-variation-settings:'FILL' 1;">manage_accounts</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-on-surface font-headline mb-1">Rol əsaslı giriş</h4>
-                                    <p class="text-sm text-secondary">Administrator, mühasib, operator — hər biri yalnız
-                                        öz hüdudlarında işləyir.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Module flow diagram -->
-                    <div class="relative">
-                        <div class="grid grid-cols-3 gap-3">
-                            <div
-                                class="col-span-3 bg-white rounded-xl p-5 border border-outline-variant/15 text-center shadow-sm">
-                                <span class="material-symbols-outlined text-primary text-2xl mb-2 block"
-                                    style="font-variation-settings:'FILL' 1;">apartment</span>
-                                <div class="font-semibold text-sm text-on-surface font-headline">eMTK Platforması</div>
-                                <div class="text-xs text-secondary mt-1">Mərkəzi idarəetmə sistemi</div>
-                            </div>
-                            <div class="bg-primary/5 rounded-xl p-4 border border-primary/15 text-center">
-                                <span class="material-symbols-outlined text-primary text-xl mb-1 block">groups</span>
-                                <div class="text-xs font-semibold text-primary font-headline">Sakinlər</div>
-                            </div>
-                            <div class="bg-blue-50 rounded-xl p-4 border border-blue-100 text-center">
-                                <span
-                                    class="material-symbols-outlined text-blue-600 text-xl mb-1 block">receipt_long</span>
-                                <div class="text-xs font-semibold text-blue-700 font-headline">Fakturalar</div>
-                            </div>
-                            <div class="bg-green-50 rounded-xl p-4 border border-green-100 text-center">
-                                <span
-                                    class="material-symbols-outlined text-green-600 text-xl mb-1 block">payments</span>
-                                <div class="text-xs font-semibold text-green-700 font-headline">Ödənişlər</div>
-                            </div>
-                            <div class="bg-orange-50 rounded-xl p-4 border border-orange-100 text-center">
-                                <span
-                                    class="material-symbols-outlined text-orange-500 text-xl mb-1 block">bar_chart</span>
-                                <div class="text-xs font-semibold text-orange-600 font-headline">Hesabatlar</div>
-                            </div>
-                            <div class="bg-purple-50 rounded-xl p-4 border border-purple-100 text-center">
-                                <span
-                                    class="material-symbols-outlined text-purple-600 text-xl mb-1 block">mark_email_unread</span>
-                                <div class="text-xs font-semibold text-purple-700 font-headline">Bildirişlər</div>
-                            </div>
-                            <div
-                                class="bg-surface-container-highest rounded-xl p-4 border border-outline-variant/20 text-center">
-                                <span
-                                    class="material-symbols-outlined text-secondary text-xl mb-1 block">admin_panel_settings</span>
-                                <div class="text-xs font-semibold text-secondary font-headline">İnzibat</div>
-                            </div>
-                        </div>
+                        <p class="font-display font-bold text-sm text-primary">Знак в интерфейсе</p>
+                        <p class="text-xs text-muted max-w-[14rem]">Тот же asset, что в шапке живого портала — узнаваемость в закладках и на мобильном экране.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- NOTIFICATIONS -->
-        <section id="notifications" class="py-24 px-6 md:px-10 bg-background">
-            <div class="max-w-screen-xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <!-- Left: notification mockups -->
-                    <div class="flex flex-col gap-4">
-                        <!-- WhatsApp mock -->
-                        <div class="bg-[#075E54] rounded-2xl p-5 shadow-lg max-w-sm">
-                            <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
-                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-white text-lg">apartment</span>
-                                </div>
-                                <div>
-                                    <div class="text-white text-sm font-semibold">eMTK Bildiriş</div>
-                                    <div class="text-green-300 text-xs">online</div>
-                                </div>
-                            </div>
-                            <div class="bg-[#DCF8C6] rounded-xl rounded-tl-sm p-3 max-w-[80%] ml-auto">
-                                <p class="text-[#303030] text-xs leading-relaxed">Hörmətli Əli Əliyev,<br />Mənzil 14A
-                                    üçün Aprel 2025 hesab-fakturanız:<br /><strong>Kommunal: ₼
-                                        45.00</strong><br /><strong>İdarəetmə: ₼ 40.00</strong><br /><strong>CƏMİ: ₼
-                                        85.00</strong><br /><br />Son ödəniş tarixi: 15 May 2025</p>
-                                <div class="text-right text-[10px] text-gray-500 mt-1">10:34 ✓✓</div>
-                            </div>
-                        </div>
-                        <!-- Email mock -->
-                        <div
-                            class="bg-white rounded-2xl p-5 border border-outline-variant/20 shadow-sm max-w-sm ml-auto">
-                            <div class="flex items-center gap-2 mb-3 pb-3 border-b border-surface-container-high">
-                                <span class="material-symbols-outlined text-primary text-lg"
-                                    style="font-variation-settings:'FILL' 1;">mail</span>
-                                <span class="text-sm font-semibold text-on-surface">eMTK — Hesab-faktura</span>
-                            </div>
-                            <div class="text-xs text-secondary space-y-1">
-                                <p><strong class="text-on-surface">Kimə:</strong> ali.aliyev@email.com</p>
-                                <p><strong class="text-on-surface">Mövzu:</strong> Aprel 2025 — Mənzil 14A
-                                    hesab-fakturası</p>
-                                <div class="mt-2 p-2 bg-surface-container-low rounded-lg">
-                                    <p class="text-on-surface text-xs leading-relaxed">Hörmətli sakin, aylıq
-                                        hesab-fakturanız hazırdır. PDF əlavə olunub.</p>
-                                </div>
-                                <div class="flex items-center gap-1 mt-2">
-                                    <span class="material-symbols-outlined text-red-500 text-sm">picture_as_pdf</span>
-                                    <span
-                                        class="text-primary text-xs underline cursor-pointer">hesab-faktura-04-2025.pdf</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Right: content -->
-                    <div>
-                        <span
-                            class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">Kommunikasiya</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-on-surface font-headline mb-6">Avtomatik
-                            bildirişlər — Email və WhatsApp</h2>
-                        <p class="text-on-surface-variant mb-8 leading-relaxed">Hesab-faktura yaradıldıqda sistem
-                            avtomatik olaraq hər sakinin üstünlük verdikləri kanaldan bildiriş göndərir. Siz heç nə
-                            etmirsiniz.</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="p-4 bg-[#075E54]/5 border border-[#075E54]/20 rounded-xl">
-                                <div class="text-2xl mb-2">💬</div>
-                                <h4 class="font-semibold text-on-surface font-headline mb-1">WhatsApp</h4>
-                                <p class="text-xs text-secondary">Ani çatdırılma. Oxuma qeydiyyatı. Şablon mesajlar.</p>
-                            </div>
-                            <div class="p-4 bg-primary/5 border border-primary/20 rounded-xl">
-                                <div class="text-2xl mb-2">📧</div>
-                                <h4 class="font-semibold text-on-surface font-headline mb-1">Email</h4>
-                                <p class="text-xs text-secondary">PDF əlavəli. Rəsmi formatda. Toplu göndəriş.</p>
-                            </div>
-                            <div class="p-4 bg-orange-50 border border-orange-100 rounded-xl">
-                                <div class="text-2xl mb-2">🔔</div>
-                                <h4 class="font-semibold text-on-surface font-headline mb-1">Xatırlatma</h4>
-                                <p class="text-xs text-secondary">Son tarix yaxınlaşanda avtomatik xatırlatma.</p>
-                            </div>
-                            <div class="p-4 bg-purple-50 border border-purple-100 rounded-xl">
-                                <div class="text-2xl mb-2">📊</div>
-                                <h4 class="font-semibold text-on-surface font-headline mb-1">Hesabat</h4>
-                                <p class="text-xs text-secondary">Aylıq xülasə hesabatı idarəçilərə göndərilir.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- CTA -->
-        <section class="py-24 px-6 md:px-10 bg-gradient-to-br from-primary via-primary-container to-primary">
-            <div class="max-w-screen-xl mx-auto text-center">
-                <h2 class="text-3xl md:text-5xl font-black text-white font-headline mb-6">Binanızı eMTK ilə idarə edin
+        <section class="bg-gradient-to-br from-primary via-primary to-accent text-white">
+            <div class="max-w-5xl mx-auto px-5 sm:px-8 py-16 sm:py-20 text-center">
+                <h2 class="font-display text-2xl sm:text-3xl font-bold mb-4 max-w-2xl mx-auto">
+                    Готовы показать eMTK на вашем доме или портфеле адресов?
                 </h2>
-                <p class="text-white/70 text-lg max-w-xl mx-auto mb-10">Rəqəmsal idarəçiliyə keçid asandır. Komandamız
-                    ilkin quraşdırma və öyrədilmədə köməklik edir.</p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#contact"
-                        class="bg-white text-primary font-bold px-8 py-4 rounded-DEFAULT hover:bg-surface-container-low transition-all hover:scale-[1.02] shadow-lg flex items-center gap-2">
-                        <span class="material-symbols-outlined">mail</span> Əlaqə saxla
-                    </a>
-                    <a href="#features"
-                        class="border-2 border-white/40 text-white font-bold px-8 py-4 rounded-DEFAULT hover:bg-white/10 transition-all flex items-center gap-2">
-                        <span class="material-symbols-outlined">info</span> Daha çox öyrən
-                    </a>
-                </div>
+                <p class="text-white/75 text-sm sm:text-base max-w-lg mx-auto mb-8 leading-relaxed">
+                    Короткий созвон — и мы объясним, как платформа ложится на ваш процесс, без лишней теории и «слайдов на сто страниц».
+                </p>
+                <a href="#contact"
+                    class="inline-flex items-center gap-2 rounded-full bg-white text-primary px-6 py-3 text-sm font-bold hover:bg-surface-low transition-colors shadow-lg">
+                    Перейти к контактам
+                    <span class="material-symbols-outlined text-lg" aria-hidden="true">arrow_forward</span>
+                </a>
             </div>
         </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="py-24 px-6 md:px-10 bg-background">
-            <div class="max-w-screen-xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-16">
-                    <!-- Left: info -->
-                    <div>
-                        <span
-                            class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">Əlaqə</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-on-surface font-headline mb-6">Bizimlə əlaqə
-                            saxlayın</h2>
-                        <p class="text-on-surface-variant mb-10 leading-relaxed">Suallarınız var? Demo görmək
-                            istəyirsiniz? Layihənizi müzakirə etməyə hazırıq.</p>
-                        <div class="flex flex-col gap-6">
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <span class="material-symbols-outlined text-primary"
-                                        style="font-variation-settings:'FILL' 1;">mail</span>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-secondary uppercase tracking-wider font-semibold mb-0.5">
-                                        Email</div>
-                                    <a href="mailto:info@emtk.az"
-                                        class="text-on-surface font-medium hover:text-primary transition-colors">info@emtk.az</a>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-12 h-12 bg-[#075E54]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <span class="text-[#075E54] text-2xl">💬</span>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-secondary uppercase tracking-wider font-semibold mb-0.5">
-                                        WhatsApp</div>
-                                    <a href="https://wa.me/994501234567" target="_blank"
-                                        class="text-on-surface font-medium hover:text-primary transition-colors">+994 50
-                                        123 45 67</a>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <span class="material-symbols-outlined text-blue-600"
-                                        style="font-variation-settings:'FILL' 1;">location_on</span>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-secondary uppercase tracking-wider font-semibold mb-0.5">
-                                        Ünvan</div>
-                                    <span class="text-on-surface font-medium">Bakı, Azərbaycan</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Right: form -->
-                    <div class="bg-white rounded-2xl p-8 border border-outline-variant/15 shadow-sm">
-                        <h3 class="text-xl font-bold text-on-surface font-headline mb-6">Müraciət formu</h3>
-                        <form id="contactForm" class="flex flex-col gap-5" onsubmit="handleSubmit(event)">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label
-                                        class="block text-xs font-semibold text-secondary uppercase tracking-wider mb-2"
-                                        for="fname">Ad</label>
-                                    <input id="fname" type="text" required placeholder="Adınız"
-                                        class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all bg-background" />
-                                </div>
-                                <div>
-                                    <label
-                                        class="block text-xs font-semibold text-secondary uppercase tracking-wider mb-2"
-                                        for="lname">Soyad</label>
-                                    <input id="lname" type="text" required placeholder="Soyadınız"
-                                        class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all bg-background" />
-                                </div>
-                            </div>
+        <section id="contact" class="max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <div>
+                    <h2 class="font-display text-3xl font-bold text-primary mb-4">Связь</h2>
+                    <p class="text-muted leading-relaxed mb-8">
+                        Расскажите в паре предложений, сколько домов вы ведёте и что болит сильнее всего — счета, сбор денег или отчётность.
+                        Ответим человеческим языком, без навязчивых рассылок.
+                    </p>
+                    <ul class="space-y-5 text-sm">
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-accent shrink-0" aria-hidden="true">mail</span>
                             <div>
-                                <label class="block text-xs font-semibold text-secondary uppercase tracking-wider mb-2"
-                                    for="email">Email</label>
-                                <input id="email" type="email" required placeholder="email@nümunə.az"
-                                    class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all bg-background" />
+                                <div class="text-xs font-semibold uppercase tracking-wider text-muted mb-0.5">Email</div>
+                                <a class="font-medium text-ink hover:text-accent transition-colors" href="mailto:info@emtk.az">info@emtk.az</a>
                             </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-accent shrink-0" aria-hidden="true">chat</span>
                             <div>
-                                <label class="block text-xs font-semibold text-secondary uppercase tracking-wider mb-2"
-                                    for="phone">Telefon</label>
-                                <input id="phone" type="tel" placeholder="+994 50 XXX XX XX"
-                                    class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all bg-background" />
+                                <div class="text-xs font-semibold uppercase tracking-wider text-muted mb-0.5">WhatsApp</div>
+                                <a class="font-medium text-ink hover:text-accent transition-colors" href="https://wa.me/994501234567" target="_blank" rel="noopener noreferrer">+994 50 123 45 67</a>
                             </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-accent shrink-0" aria-hidden="true">location_on</span>
                             <div>
-                                <label class="block text-xs font-semibold text-secondary uppercase tracking-wider mb-2"
-                                    for="subject">Mövzu</label>
-                                <select id="subject"
-                                    class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all bg-background">
-                                    <option value="">Seçin...</option>
-                                    <option value="demo">Demo tələbi</option>
-                                    <option value="pricing">Qiymət məlumatı</option>
-                                    <option value="support">Texniki dəstək</option>
-                                    <option value="other">Digər</option>
-                                </select>
+                                <div class="text-xs font-semibold uppercase tracking-wider text-muted mb-0.5">Локация</div>
+                                <span class="font-medium">Баку, Азербайджан</span>
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-secondary uppercase tracking-wider mb-2"
-                                    for="message">Mesaj</label>
-                                <textarea id="message" rows="4" required placeholder="Sualınızı yazın..."
-                                    class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 text-on-surface text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all bg-background resize-none"></textarea>
-                            </div>
-                            <button type="submit" id="submitBtn"
-                                class="bg-gradient-to-br from-primary to-primary-container text-white font-semibold py-4 rounded-lg hover:shadow-[0_8px_24px_rgba(0,52,111,0.25)] hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined text-xl">send</span>
-                                Göndər
-                            </button>
-                            <div id="formSuccess"
-                                class="hidden bg-green-50 border border-green-200 text-green-700 rounded-lg p-4 text-sm text-center">
-                                ✅ Müraciətiniz qəbul edildi! Tezliklə sizinlə əlaqə saxlayacağıq.
-                            </div>
-                        </form>
-                    </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rounded-card border border-line/70 bg-white p-6 sm:p-8 shadow-sm">
+                    <p class="text-sm text-muted leading-relaxed">
+                        Отдельной «админки сайта» здесь нет — это лёгкая визитка для презентации продукта. Все рабочие сценарии
+                        живут в самом портале eMTK, который вы разворачиваете под свой дом или сеть объектов.
+                    </p>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-on-background text-white">
-        <div class="max-w-screen-xl mx-auto px-6 md:px-10 py-16">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-                <div class="col-span-2 md:col-span-1">
-                    <div class="text-2xl font-black font-headline mb-4">e<span class="text-primary-fixed-dim">MTK</span>
-                    </div>
-                    <p class="text-white/50 text-sm leading-relaxed">Bina idarəçiliyinin tam rəqəmsal həlli. Tariflər,
-                        fakturalar, ödənişlər və bildirişlər.</p>
-                </div>
-                <div>
-                    <div class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-4">Modullar</div>
-                    <ul class="flex flex-col gap-2">
-                        <li><a href="#features"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Sakinlər</a></li>
-                        <li><a href="#features"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Tariflər</a></li>
-                        <li><a href="#features"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Fakturalar</a></li>
-                        <li><a href="#features"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Ödənişlər</a></li>
-                        <li><a href="#features"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Hesabatlar</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-4">Sistem</div>
-                    <ul class="flex flex-col gap-2">
-                        <li><a href="#notifications"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Bildirişlər</a></li>
-                        <li><a href="#modules"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Arxitektura</a></li>
-                        <li><a href="#stats"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Statistika</a></li>
-                        <li><a href="#contact"
-                                class="text-sm text-white/60 hover:text-white transition-colors">Əlaqə</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-4">Əlaqə</div>
-                    <ul class="flex flex-col gap-2">
-                        <li><a href="mailto:info@emtk.az"
-                                class="text-sm text-white/60 hover:text-white transition-colors">info@emtk.az</a></li>
-                        <li><a href="https://wa.me/994501234567" target="_blank"
-                                class="text-sm text-white/60 hover:text-white transition-colors">WhatsApp</a></li>
-                        <li><span class="text-sm text-white/60">Bakı, Azərbaycan</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="text-white/40 text-sm">© 2026 eMTK. Bütün hüquqlar qorunur.</div>
-                <div class="flex gap-6">
-                    <a href="#"
-                        class="text-white/40 hover:text-white text-xs transition-colors uppercase tracking-wider">Məxfilik</a>
-                    <a href="#"
-                        class="text-white/40 hover:text-white text-xs transition-colors uppercase tracking-wider">Şərtlər</a>
-                </div>
-            </div>
+    <footer class="border-t border-line/50 bg-white/80 mt-auto">
+        <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row justify-between gap-4 items-center text-xs text-muted">
+            <span>© 2026 eMTK. Цифровой контур для управления домом.</span>
+            <span class="text-center sm:text-right">Manrope + Inter · палитра как в рабочем портале</span>
         </div>
     </footer>
 
-    <!-- Back to top -->
-    <a href="#top" id="backToTop"
-        class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:bg-primary-container transition-all hover:scale-110 opacity-0 pointer-events-none"
-        style="transition:opacity .3s,transform .2s;">
-        <span class="material-symbols-outlined">keyboard_arrow_up</span>
-    </a>
-
-    <script>
-        // Mobile menu toggle
-        document.getElementById('menuBtn').addEventListener('click', function () {
-            const m = document.getElementById('mobileMenu');
-            m.classList.toggle('hidden');
-            m.classList.toggle('flex');
-        });
-
-        // Close mobile menu on link click
-        document.querySelectorAll('#mobileMenu a').forEach(function (a) {
-            a.addEventListener('click', function () {
-                const m = document.getElementById('mobileMenu');
-                m.classList.add('hidden');
-                m.classList.remove('flex');
-            });
-        });
-
-        // Back to top button
-        const btn = document.getElementById('backToTop');
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 400) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; }
-            else { btn.style.opacity = '0'; btn.style.pointerEvents = 'none'; }
-        });
-
-        // Active nav link on scroll
-        const sections = ['hero', 'features', 'stats', 'modules', 'notifications', 'contact'];
-        window.addEventListener('scroll', function () {
-            let current = '';
-            sections.forEach(function (id) {
-                const el = document.getElementById(id);
-                if (el && window.scrollY >= el.offsetTop - 100) { current = id; }
-            });
-            document.querySelectorAll('.nav-link').forEach(function (a) {
-                a.classList.remove('active');
-                if (a.getAttribute('href') === '#' + current) { a.classList.add('active'); }
-            });
-        });
-
-        // Contact form
-        function handleSubmit(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Göndərilir...';
-            setTimeout(function () {
-                document.getElementById('contactForm').reset();
-                document.getElementById('formSuccess').classList.remove('hidden');
-                btn.innerHTML = '<span class="material-symbols-outlined">send</span> Göndər';
-                btn.disabled = false;
-                setTimeout(function () { document.getElementById('formSuccess').classList.add('hidden'); }, 5000);
-            }, 1200);
-        }
-
-        // Scroll animations
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.card-hover').forEach(function (el) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity .5s ease,transform .5s ease,box-shadow .25s,transform .25s';
-            observer.observe(el);
-        });
-    </script>
 </body>
 
 </html>
