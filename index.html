@@ -77,6 +77,28 @@
             transform: translateY(-3px);
             box-shadow: 0 24px 48px rgba(0, 22, 78, 0.12);
         }
+
+        .demo-slider {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(87, 101, 122, 0.45) transparent;
+        }
+
+        .demo-slider > figure {
+            flex: 0 0 calc(100% - 0.5rem);
+            scroll-snap-align: start;
+        }
+
+        @media (min-width: 768px) {
+            .demo-slider > figure {
+                flex-basis: 72%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .demo-slider > figure {
+                flex-basis: 56%;
+            }
+        }
     </style>
 </head>
 
@@ -206,9 +228,21 @@
                         sakinlər və əməkdaşlar hər gün gördüyü eyni tipografika və palitra tətbiqin daxilində də belədir.
                     </p>
                 </div>
+                <div class="flex items-center gap-2 self-start sm:self-end">
+                    <button id="demo-prev" type="button"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line/70 bg-white text-primary shadow-sm hover:bg-surface-low transition-colors"
+                        aria-label="Əvvəlki slayd">
+                        <span class="material-symbols-outlined text-xl" aria-hidden="true">chevron_left</span>
+                    </button>
+                    <button id="demo-next" type="button"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line/70 bg-white text-primary shadow-sm hover:bg-surface-low transition-colors"
+                        aria-label="Növbəti slayd">
+                        <span class="material-symbols-outlined text-xl" aria-hidden="true">chevron_right</span>
+                    </button>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
+            <div id="demo-slider" class="demo-slider flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2">
                 <figure
                     class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                     <div class="browser-chrome px-4 py-2 flex items-center gap-2">
@@ -217,17 +251,16 @@
                             <span class="w-2 h-2 rounded-full bg-line"></span>
                             <span class="w-2 h-2 rounded-full bg-line"></span>
                         </span>
-                        <span class="text-[11px] text-muted flex-1 text-center truncate">Demo — geniş kadr</span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — dashboard</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-surface-low">
-                        <img src="static/demo/portal-office.png" alt="eMTK portal vizualının geniş kadırı"
-                            class="w-full h-full object-cover object-center" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/screens/kdashboard.png" alt="eMTK portalı — əsas panel (dashboard)"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
-                        Sakit fon və kontrastlı şəbəkə — canlı məhsulda olduğu kimi: az yayındırıcı, tapşırığa daha çox fokus.
+                        Əsas panel: ümumi baxış və əməliyyatlar üçün səliqəli şəbəkə.
                     </figcaption>
                 </figure>
-
                 <figure
                     class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                     <div class="browser-chrome px-4 py-2 flex items-center gap-2">
@@ -236,14 +269,230 @@
                             <span class="w-2 h-2 rounded-full bg-line"></span>
                             <span class="w-2 h-2 rounded-full bg-line"></span>
                         </span>
-                        <span class="text-[11px] text-muted flex-1 text-center truncate">Demo — memarlığa vurğu</span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — dashboard (alternativ)</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-surface-low">
-                        <img src="static/demo/portal-office.png" alt="eMTK portal vizualından detal"
-                            class="w-full h-full object-cover object-[70%_center] sm:scale-110" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/screens/sdashboard.png" alt="eMTK portalı — dashboard ekranı"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
-                        Eyni kadrın başqa kropu — səhnənin dərinliyini və giriş forması ətrafındakı interfeysin vizual keyfiyyətini göstərmək üçündür.
+                        Eyni məntiqi fərqli kontekstdə: vizual ardıcıllıq saxlanılır.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — mənzillər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/kmenziller.png" alt="eMTK portalı — mənzillər modulu"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Mənzil fondu və axtarış — real məhsul kadrları.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — hesab-faktura</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/khesabfaktura.png" alt="eMTK portalı — hesab-faktura"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Hesab-faktura axını və cədvəl oxunaqlılığı.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — ödənişlər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/kodenisler.png" alt="eMTK portalı — ödənişlər"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Ödəniş əməliyyatları və statuslar.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — ödənişlər (S)</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/sodenisler.png" alt="eMTK portalı — ödənişlər ekranı"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Alternativ ödənişlər görünüşü.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — tarixçə</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/ktarixce.png" alt="eMTK portalı — tarixçə"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Əməliyyat tarixçəsi və izlənilə bilənlik.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — xərclər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/kxercler.png" alt="eMTK portalı — xərclər"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Xərclər modulu — real interfeys kadrları.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — tariflər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/ktarifler.png" alt="eMTK portalı — tariflər"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Tariflər və qiymətləndirmə ekranı.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — elanlar</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/kisveelan.png" alt="eMTK portalı — elanlar"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Elanlar və kommunikasiya.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — elanlar (S)</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/sisveelanlar.png" alt="eMTK portalı — elanlar siyahısı"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Elanlar modulunun alternativ kadrları.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — parametrlər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/ksettings.png" alt="eMTK portalı — parametrlər"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Ümumi parametrlər ekranı.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — korpus parametrləri</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/ksettings-korpus.png" alt="eMTK portalı — korpus üçün parametrlər"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Korpus səviyyəsində konfiqurasiya.
+                    </figcaption>
+                </figure>
+                <figure
+                    class="demo-shot rounded-card border border-line/70 bg-white overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                    <div class="browser-chrome px-4 py-2 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                            <span class="w-2 h-2 rounded-full bg-line"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — MT parametrləri</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-surface-low">
+                        <img src="static/demo/screens/k-settingsmt.png" alt="eMTK portalı — MT parametrləri"
+                            class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-line/40 bg-surface-low/50">
+                        Əlavə parametrləşdirmə ekranı.
                     </figcaption>
                 </figure>
             </div>
@@ -323,6 +572,27 @@
             <span class="text-center sm:text-right">Manrope + Inter · canlı portal ilə eyni palitra</span>
         </div>
     </footer>
+
+    <script>
+        (() => {
+            const slider = document.getElementById('demo-slider');
+            const prevButton = document.getElementById('demo-prev');
+            const nextButton = document.getElementById('demo-next');
+
+            if (!slider || !prevButton || !nextButton) return;
+
+            const scrollByCard = (direction) => {
+                const firstCard = slider.querySelector('figure');
+                if (!firstCard) return;
+                const gap = 24;
+                const amount = firstCard.getBoundingClientRect().width + gap;
+                slider.scrollBy({ left: amount * direction, behavior: 'smooth' });
+            };
+
+            prevButton.addEventListener('click', () => scrollByCard(-1));
+            nextButton.addEventListener('click', () => scrollByCard(1));
+        })();
+    </script>
 
 </body>
 
