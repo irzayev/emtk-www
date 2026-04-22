@@ -73,6 +73,13 @@
             background: linear-gradient(135deg, #00346f, #004a99);
         }
 
+        .brand-gradient-text {
+            background: linear-gradient(135deg, #00346f, #004a99);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
         .demo-shot {
             transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
@@ -113,10 +120,10 @@
         <div class="max-w-5xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
             <a href="#top" class="flex items-center gap-2.5 no-underline text-ink">
                 <span
-                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-line/60 shadow-sm overflow-hidden">
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl brand-gradient border border-line/40 shadow-sm overflow-hidden">
                     <img src="static/demo/favicon.png" alt="" class="h-7 w-7 object-contain" width="28" height="28" />
                 </span>
-                <span class="font-display font-extrabold text-lg tracking-tight">e<span class="text-accent">MTK</span></span>
+                <span class="font-display font-extrabold text-lg tracking-tight brand-gradient-text">eMTK</span>
             </a>
             <nav class="hidden sm:flex items-center gap-8 text-sm font-medium text-muted">
                 <a href="#idea" class="hover:text-primary transition-colors">Yanaşma</a>
@@ -124,7 +131,7 @@
                 <a href="#contact" class="hover:text-primary transition-colors">Əlaqə</a>
             </nav>
             <a href="mailto:info@emtk.az"
-                class="text-sm font-semibold rounded-full bg-primary text-white px-4 py-2 hover:bg-accent transition-colors shadow-sm">
+                class="text-sm font-semibold rounded-full brand-gradient text-white px-4 py-2 hover:opacity-90 transition-opacity shadow-sm">
                 Yazın
             </a>
         </div>
@@ -165,21 +172,65 @@
                     <div
                         class="absolute -inset-4 rounded-card brand-gradient opacity-10 blur-2xl -z-10"
                         aria-hidden="true"></div>
-                    <figure
-                        class="demo-shot rounded-card border border-line/70 bg-white shadow-[0_8px_40px_rgba(0,22,78,0.08)] overflow-hidden">
-                        <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
-                            <span class="flex gap-1.5" aria-hidden="true">
-                                <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
-                            </span>
-                            <span class="text-[11px] font-medium text-muted truncate flex-1 text-center">portal.emtk — giriş</span>
-                        </div>
-                        <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-surface-low">
-                            <img src="static/demo/portal-office.png" alt="eMTK portalının vizual mühitindən fraqment"
-                                class="w-full h-full object-cover object-[center_30%] scale-[1.02]" loading="eager" width="1200" height="800" />
-                        </div>
-                    </figure>
+                    <div class="flex items-center justify-end gap-2 mb-3">
+                        <button id="hero-prev" type="button"
+                            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line/70 bg-white text-primary shadow-sm hover:bg-surface-low transition-colors"
+                            aria-label="Əvvəlki slayd">
+                            <span class="material-symbols-outlined text-lg" aria-hidden="true">chevron_left</span>
+                        </button>
+                        <button id="hero-next" type="button"
+                            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line/70 bg-white text-primary shadow-sm hover:bg-surface-low transition-colors"
+                            aria-label="Növbəti slayd">
+                            <span class="material-symbols-outlined text-lg" aria-hidden="true">chevron_right</span>
+                        </button>
+                    </div>
+                    <div id="hero-slider" class="demo-slider flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1">
+                        <figure
+                            class="demo-shot flex-[0_0_100%] snap-start rounded-card border border-line/70 bg-white shadow-[0_8px_40px_rgba(0,22,78,0.08)] overflow-hidden">
+                            <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                                <span class="flex gap-1.5" aria-hidden="true">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
+                                </span>
+                                <span class="text-[11px] font-medium text-muted truncate flex-1 text-center">portal.emtk — giriş</span>
+                            </div>
+                            <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-surface-low">
+                                <img src="static/demo/screens/loginscreen.png" alt="eMTK portalı — giriş ekranı"
+                                    class="w-full h-full object-cover object-top" loading="eager" width="1200" height="800" />
+                            </div>
+                        </figure>
+                        <figure
+                            class="demo-shot flex-[0_0_100%] snap-start rounded-card border border-line/70 bg-white shadow-[0_8px_40px_rgba(0,22,78,0.08)] overflow-hidden">
+                            <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                                <span class="flex gap-1.5" aria-hidden="true">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
+                                </span>
+                                <span class="text-[11px] font-medium text-muted truncate flex-1 text-center">portal.emtk — giriş (dark)</span>
+                            </div>
+                            <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-surface-low">
+                                <img src="static/demo/screens/loginscreen-dark.png" alt="eMTK portalı — giriş ekranı (dark)"
+                                    class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                            </div>
+                        </figure>
+                        <figure
+                            class="demo-shot flex-[0_0_100%] snap-start rounded-card border border-line/70 bg-white shadow-[0_8px_40px_rgba(0,22,78,0.08)] overflow-hidden">
+                            <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                                <span class="flex gap-1.5" aria-hidden="true">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
+                                </span>
+                                <span class="text-[11px] font-medium text-muted truncate flex-1 text-center">portal.emtk — dashboard (dark)</span>
+                            </div>
+                            <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-surface-low">
+                                <img src="static/demo/screens/kdashboard-dark.png" alt="eMTK portalı — dashboard ekranı (dark)"
+                                    class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
+                            </div>
+                        </figure>
+                    </div>
                 </div>
             </div>
         </section>
@@ -579,6 +630,26 @@
 
     <script>
         (() => {
+            const initSliderControls = (sliderId, prevId, nextId, gap = 24) => {
+                const slider = document.getElementById(sliderId);
+                const prevButton = document.getElementById(prevId);
+                const nextButton = document.getElementById(nextId);
+
+                if (!slider || !prevButton || !nextButton) return;
+
+                const scrollByCard = (direction) => {
+                    const firstCard = slider.querySelector('figure');
+                    if (!firstCard) return;
+                    const amount = firstCard.getBoundingClientRect().width + gap;
+                    slider.scrollBy({ left: amount * direction, behavior: 'smooth' });
+                };
+
+                prevButton.addEventListener('click', () => scrollByCard(-1));
+                nextButton.addEventListener('click', () => scrollByCard(1));
+            };
+
+            initSliderControls('hero-slider', 'hero-prev', 'hero-next', 16);
+
             const slider = document.getElementById('demo-slider');
             const prevButton = document.getElementById('demo-prev');
             const nextButton = document.getElementById('demo-next');
