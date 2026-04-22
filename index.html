@@ -81,12 +81,75 @@
         }
 
         .demo-shot {
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            transition: border-color 0.2s ease;
+            box-shadow: none !important;
         }
 
         .demo-shot:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 24px 48px rgba(0, 22, 78, 0.12);
+            transform: none;
+            box-shadow: none !important;
+            border-color: rgba(198, 198, 205, 0.9);
+        }
+
+        .demo-shot .browser-chrome {
+            display: none;
+        }
+
+        .demo-shot > div[class*="aspect-"] {
+            aspect-ratio: auto;
+            background: transparent;
+        }
+
+        .demo-shot > div[class*="aspect-"] > img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .demo-shot img {
+            cursor: zoom-in;
+        }
+
+        .lightbox-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 70;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(7, 15, 32, 0.82);
+            padding: 1rem;
+        }
+
+        .lightbox-backdrop[data-open="true"] {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: min(96vw, 1440px);
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(198, 198, 205, 0.45);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
         .demo-slider {
@@ -191,14 +254,6 @@
                     <div id="hero-slider" class="demo-slider flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1">
                         <figure
                             class="demo-shot flex-[0_0_100%] snap-start rounded-card border border-line/70 bg-white shadow-[0_8px_40px_rgba(0,22,78,0.08)] overflow-hidden">
-                            <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
-                                <span class="flex gap-1.5" aria-hidden="true">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
-                                </span>
-                                <span class="text-[11px] font-medium text-muted truncate flex-1 text-center">portal.emtk — giriş</span>
-                            </div>
                             <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-surface-low">
                                 <img src="static/demo/screens/loginscreen.png" alt="eMTK portalı — giriş ekranı"
                                     class="w-full h-full object-cover object-top" loading="eager" width="1200" height="800" />
@@ -206,29 +261,13 @@
                         </figure>
                         <figure
                             class="demo-shot flex-[0_0_100%] snap-start rounded-card border border-line/70 bg-white shadow-[0_8px_40px_rgba(0,22,78,0.08)] overflow-hidden">
-                            <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
-                                <span class="flex gap-1.5" aria-hidden="true">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
-                                </span>
-                                <span class="text-[11px] font-medium text-muted truncate flex-1 text-center">portal.emtk — giriş (dark)</span>
-                            </div>
                             <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-surface-low">
-                                <img src="static/demo/screens/loginscreen-dark.png" alt="eMTK portalı — giriş ekranı (dark)"
+                                <img src="static/demo/screens/loginscreen-dark.png" alt="eMTK portalı — giriş səhifəsi (tünd)"
                                     class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
                             </div>
                         </figure>
                         <figure
                             class="demo-shot flex-[0_0_100%] snap-start rounded-card border border-line/70 bg-white shadow-[0_8px_40px_rgba(0,22,78,0.08)] overflow-hidden">
-                            <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
-                                <span class="flex gap-1.5" aria-hidden="true">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
-                                </span>
-                                <span class="text-[11px] font-medium text-muted truncate flex-1 text-center">portal.emtk — dashboard (dark)</span>
-                            </div>
                             <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-surface-low">
                                 <img src="static/demo/screens/kdashboard-dark.png" alt="eMTK portalı — dashboard ekranı (dark)"
                                     class="w-full h-full object-cover object-top" loading="lazy" width="1200" height="800" />
@@ -605,7 +644,7 @@
                             <span class="material-symbols-outlined text-accent shrink-0" aria-hidden="true">chat</span>
                             <div>
                                 <div class="text-xs font-semibold uppercase tracking-wider text-muted mb-0.5">WhatsApp</div>
-                                <a class="font-medium text-ink hover:text-accent transition-colors" href="https://wa.me/994501234567" target="_blank" rel="noopener noreferrer">+994 50 123 45 67</a>
+                                <a class="font-medium text-ink hover:text-accent transition-colors" href="https://wa.me/994506617716" target="_blank" rel="noopener noreferrer">+994 50 661 77 16</a>
                             </div>
                         </li>
                         <li class="flex gap-3">
@@ -672,6 +711,52 @@
 
             prevButton.addEventListener('click', () => scrollByCard(-1));
             nextButton.addEventListener('click', () => scrollByCard(1));
+
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox-backdrop';
+            lightbox.setAttribute('role', 'dialog');
+            lightbox.setAttribute('aria-modal', 'true');
+            lightbox.setAttribute('aria-label', 'Şəkil önizləməsi');
+            lightbox.setAttribute('data-open', 'false');
+
+            const lightboxImg = document.createElement('img');
+            lightboxImg.className = 'lightbox-image';
+            lightboxImg.alt = '';
+
+            const closeButton = document.createElement('button');
+            closeButton.type = 'button';
+            closeButton.className = 'lightbox-close';
+            closeButton.setAttribute('aria-label', 'Bağla');
+            closeButton.innerHTML = '&times;';
+
+            const closeLightbox = () => {
+                lightbox.setAttribute('data-open', 'false');
+                document.body.style.overflow = '';
+            };
+
+            closeButton.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (event) => {
+                if (event.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && lightbox.getAttribute('data-open') === 'true') {
+                    closeLightbox();
+                }
+            });
+
+            lightbox.appendChild(lightboxImg);
+            lightbox.appendChild(closeButton);
+            document.body.appendChild(lightbox);
+
+            document.querySelectorAll('.demo-shot img').forEach((img) => {
+                img.addEventListener('click', () => {
+                    lightboxImg.src = img.currentSrc || img.src;
+                    lightboxImg.alt = img.alt || 'Portal görüntüsü';
+                    lightbox.setAttribute('data-open', 'true');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
         })();
     </script>
 
