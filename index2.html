@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="eMTK — binanızı idarə etmək üçün rəqəmsal mühit: sakinlər, hesab-fakturalar, ödənişlər və hesabatlar tək sakit interfeysdə." />
+    <title>eMTK — bina idarəçiliyi portalı</title>
+    <link rel="icon" href="static/demo/favicon.png" type="image/png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        ink: '#0b0f1a',
+                        muted: '#4a5568',
+                        soft: '#6b7280',
+                        accent: '#1e3a8a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
+                    },
+                    borderRadius: { glass: '1.75rem', pill: '9999px' },
+                },
+            },
+        };
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, system-ui, sans-serif;
+            background: #eef2ff;
+            color: #0b0f1a;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: Manrope, Inter, system-ui, sans-serif;
+            letter-spacing: -0.025em;
+        }
+
+        /* ===== Liquid background: animated gradient orbs ===== */
+        .liquid-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(at 20% 0%, #eef1f5 0%, transparent 50%),
+                radial-gradient(at 80% 20%, #e8ecf2 0%, transparent 55%),
+                radial-gradient(at 0% 60%, #e3e8ef 0%, transparent 50%),
+                radial-gradient(at 100% 100%, #f3f5f8 0%, transparent 55%),
+                linear-gradient(180deg, #f5f6f8 0%, #eceff3 100%);
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.65;
+            will-change: transform;
+            animation: float 22s ease-in-out infinite;
+        }
+
+        .blob-1 {
+            width: 520px; height: 520px;
+            top: -120px; left: -80px;
+            background: radial-gradient(circle, #c2c8d1, #8d96a3);
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 640px; height: 640px;
+            top: 20%; right: -180px;
+            background: radial-gradient(circle, #b7bec8, #7a8593);
+            animation-delay: -7s;
+            animation-duration: 26s;
+        }
+
+        .blob-3 {
+            width: 580px; height: 580px;
+            bottom: -160px; left: 20%;
+            background: radial-gradient(circle, #c8cdd4, #9099a6);
+            animation-delay: -14s;
+            animation-duration: 30s;
+        }
+
+        .blob-4 {
+            width: 420px; height: 420px;
+            top: 55%; right: 25%;
+            background: radial-gradient(circle, #b0b8c3, #7d8795);
+            opacity: 0.5;
+            animation-delay: -3s;
+            animation-duration: 28s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(40px, -30px) scale(1.08); }
+            50% { transform: translate(-20px, 40px) scale(0.95); }
+            75% { transform: translate(30px, 20px) scale(1.04); }
+        }
+
+        /* Subtle grain for realism */
+        .liquid-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* ===== Glass surfaces ===== */
+        .glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.8) inset,
+                0 -1px 0 rgba(255, 255, 255, 0.1) inset,
+                0 20px 50px -20px rgba(31, 38, 135, 0.22),
+                0 4px 16px -4px rgba(31, 38, 135, 0.08);
+        }
+
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.62);
+            backdrop-filter: blur(32px) saturate(200%);
+            -webkit-backdrop-filter: blur(32px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                0 -1px 0 rgba(120, 130, 180, 0.1) inset,
+                0 30px 60px -20px rgba(31, 38, 135, 0.25),
+                0 8px 24px -6px rgba(31, 38, 135, 0.1);
+        }
+
+        .glass-soft {
+            background: rgba(255, 255, 255, 0.32);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.7) inset,
+                0 10px 30px -12px rgba(31, 38, 135, 0.18);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.15) inset,
+                0 20px 50px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ===== Buttons ===== */
+        .btn-liquid {
+            position: relative;
+            background: linear-gradient(135deg, rgba(63, 69, 78, 0.95), rgba(27, 31, 36, 0.95));
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.35) inset,
+                0 -6px 16px rgba(49, 56, 64, 0.45) inset,
+                0 10px 30px -8px rgba(41, 46, 53, 0.45);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn-liquid:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.5) inset,
+                0 -6px 16px rgba(49, 56, 64, 0.55) inset,
+                0 14px 36px -8px rgba(41, 46, 53, 0.55);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #0b0f1a;
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.8) inset,
+                0 8px 24px -8px rgba(31, 38, 135, 0.2);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.75);
+            transform: translateY(-1px);
+        }
+
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                0 6px 18px -6px rgba(31, 38, 135, 0.22);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-1px);
+        }
+
+        /* ===== Gradient text ===== */
+        .text-gradient {
+            background: linear-gradient(135deg, #1f2328 0%, #4a515b 45%, #7a848f 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .text-gradient-dark {
+            background: linear-gradient(135deg, #2b3138 0%, #5a646f 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ===== Pill badge ===== */
+        .badge-liquid {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                0 6px 20px -8px rgba(31, 38, 135, 0.2);
+        }
+
+        /* ===== Feature icon chip ===== */
+        .icon-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(105, 113, 124, 0.2), rgba(63, 70, 78, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                0 8px 20px -8px rgba(63, 70, 78, 0.28);
+            color: #39424d;
+        }
+
+        /* ===== Demo shots ===== */
+        .demo-shot {
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .demo-shot:hover {
+            transform: translateY(-4px);
+        }
+
+        .demo-shot img {
+            cursor: zoom-in;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        /* Browser chrome on glass */
+        .browser-chrome {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* ===== Sliders ===== */
+        .demo-slider {
+            scrollbar-width: none;
+        }
+
+        .demo-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .demo-slider > figure {
+            flex: 0 0 calc(100% - 0.5rem);
+            scroll-snap-align: start;
+        }
+
+        @media (min-width: 768px) {
+            .demo-slider > figure {
+                flex-basis: 72%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .demo-slider > figure {
+                flex-basis: 56%;
+            }
+        }
+
+        .hero-slider > figure {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+        }
+
+        /* ===== Lightbox ===== */
+        .lightbox-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 70;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(11, 15, 26, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem;
+        }
+
+        .lightbox-backdrop[data-open="true"] {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: min(96vw, 1440px);
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            color: #fff;
+            font-size: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .favicon-img {
+            max-width: none;
+        }
+
+        /* Section dividers — extremely subtle */
+        .section-glow {
+            position: relative;
+        }
+
+        .section-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Animated liquid background -->
+    <div class="liquid-bg" aria-hidden="true">
+        <span class="blob blob-1"></span>
+        <span class="blob blob-2"></span>
+        <span class="blob blob-3"></span>
+        <span class="blob blob-4"></span>
+    </div>
+
+    <!-- Floating glass header -->
+    <header class="sticky top-4 z-40 px-4 sm:px-6">
+        <div class="glass-strong max-w-5xl mx-auto rounded-pill px-3 sm:px-5 h-14 flex items-center justify-between gap-3">
+            <a href="#top" class="flex items-center gap-2.5 no-underline text-ink pl-1">
+                <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl overflow-hidden border border-white/60 shadow-sm"
+                      style="background: linear-gradient(135deg, #5b636f, #262b31);">
+                    <img src="static/demo/favicon.png" alt="" class="favicon-img h-[105%] w-auto object-contain object-[center_3px]" width="28" height="28" />
+                </span>
+                <span class="font-display font-extrabold text-lg tracking-tight text-gradient">eMTK</span>
+            </a>
+            <nav class="hidden sm:flex items-center gap-7 text-sm font-medium text-muted">
+                <a href="#idea" class="hover:text-ink transition-colors">Yanaşma</a>
+                <a href="#demo" class="hover:text-ink transition-colors">İnterfeys</a>
+                <a href="#contact-cta" class="hover:text-ink transition-colors">Əlaqə</a>
+            </nav>
+            <a href="mailto:info@emtk.az"
+                class="btn-liquid text-sm font-semibold rounded-pill px-4 py-2">
+                Yazın
+            </a>
+        </div>
+    </header>
+
+    <main id="top" class="flex-1">
+
+        <!-- ===== HERO ===== -->
+        <section class="max-w-6xl mx-auto px-5 sm:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="space-y-7">
+                    <p class="badge-liquid inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted rounded-pill px-3.5 py-1.5">
+                        <span class="material-symbols-outlined text-base text-indigo-600" aria-hidden="true">apartment</span>
+                        Bina idarəçiliyi cədvəl xaosu olmadan
+                    </p>
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+                        Tək portal — binanızın
+                        <span class="text-gradient">tam şəkli</span>:
+                        insanlar, hesablar, pul, aydınlıq.
+                    </h1>
+                    <p class="text-lg text-muted leading-relaxed max-w-xl">
+                        eMTK idarəetmə şirkətinin gündəlik işini sakit rəqəmsal çərçivəyə yığır: kim yaşayır, nə
+                        hesablanıb, nə ödənilib və nə qalıb görülməlidir. Əl ilə zənglər azalır — sizin üçün proqnozlaşdırılan
+                        axın, sakinlər üçün isə daha çox etibar qalır.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <a href="#demo"
+                            class="btn-liquid inline-flex items-center gap-2 rounded-pill px-6 py-3 text-sm font-semibold">
+                            Vizualı görün
+                            <span class="material-symbols-outlined text-lg" aria-hidden="true">arrow_downward</span>
+                        </a>
+                        <a href="#contact"
+                            class="btn-ghost inline-flex items-center gap-2 rounded-pill px-6 py-3 text-sm font-semibold">
+                            Danışıq istəyin
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="flex items-center justify-end gap-2 mb-4">
+                        <button id="hero-prev" type="button"
+                            class="icon-btn inline-flex h-10 w-10 items-center justify-center rounded-full text-ink"
+                            aria-label="Əvvəlki slayd">
+                            <span class="material-symbols-outlined text-lg" aria-hidden="true">chevron_left</span>
+                        </button>
+                        <button id="hero-next" type="button"
+                            class="icon-btn inline-flex h-10 w-10 items-center justify-center rounded-full text-ink"
+                            aria-label="Növbəti slayd">
+                            <span class="material-symbols-outlined text-lg" aria-hidden="true">chevron_right</span>
+                        </button>
+                    </div>
+                    <div class="glass-strong rounded-glass p-2 sm:p-3">
+                        <div id="hero-slider" class="demo-slider hero-slider flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-[1.25rem]">
+                            <figure class="demo-shot snap-start rounded-[1.25rem] overflow-hidden">
+                                <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-white/30">
+                                    <img src="static/demo/screens/loginscreen.png" alt="eMTK portalı — giriş ekranı"
+                                        loading="eager" width="1200" height="800" />
+                                </div>
+                            </figure>
+                            <figure class="demo-shot snap-start rounded-[1.25rem] overflow-hidden">
+                                <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-white/30">
+                                    <img src="static/demo/screens/loginscreen-dark.png" alt="eMTK portalı — giriş səhifəsi (tünd)"
+                                        loading="lazy" width="1200" height="800" />
+                                </div>
+                            </figure>
+                            <figure class="demo-shot snap-start rounded-[1.25rem] overflow-hidden">
+                                <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-white/30">
+                                    <img src="static/demo/screens/kdashboard-dark.png" alt="eMTK portalı — dashboard ekranı (dark)"
+                                        loading="lazy" width="1200" height="800" />
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- Decorative floating glass chips -->
+                    <div class="hidden lg:block absolute -left-6 top-20 glass rounded-2xl px-4 py-3 shadow-xl">
+                        <div class="flex items-center gap-3">
+                            <span class="icon-chip !w-10 !h-10 !rounded-xl">
+                                <span class="material-symbols-outlined text-xl" aria-hidden="true">trending_up</span>
+                            </span>
+                            <div>
+                                <div class="text-[11px] uppercase tracking-wider text-muted">Yığım</div>
+                                <div class="font-display font-bold text-sm">+18% proqnoz</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block absolute -right-4 bottom-6 glass rounded-2xl px-4 py-3 shadow-xl">
+                        <div class="flex items-center gap-3">
+                            <span class="icon-chip !w-10 !h-10 !rounded-xl" style="background: linear-gradient(135deg, rgba(141,150,163,0.25), rgba(82,91,101,0.25)); color: #2f3740;">
+                                <span class="material-symbols-outlined text-xl" aria-hidden="true">task_alt</span>
+                            </span>
+                            <div>
+                                <div class="text-[11px] uppercase tracking-wider text-muted">Sakinlər</div>
+                                <div class="font-display font-bold text-sm">720 aktiv</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== IDEA / WHY ===== -->
+        <section id="idea" class="max-w-6xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
+            <div class="glass-strong rounded-glass p-8 sm:p-14">
+                <div class="max-w-2xl mb-12">
+                    <p class="badge-liquid inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted rounded-pill px-3.5 py-1.5 mb-5">
+                        <span class="material-symbols-outlined text-base text-indigo-600" aria-hidden="true">insights</span>
+                        Yanaşma
+                    </p>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">
+                        Komandalar <span class="text-gradient">sakit rəqəmsal konturu</span> niyə seçir
+                    </h2>
+                    <p class="text-muted text-lg leading-relaxed">
+                        Məlumatlar tək yerdə olanda mühasib, dispetçer və sakin arasında «kor zona» azalır.
+                        eMTK adi aylıq dövrə uyğundur: tariflər → hesablamalar → xatırlatmalar → ödənişlər → hesabat.
+                    </p>
+                </div>
+                <div class="grid sm:grid-cols-3 gap-5">
+                    <article class="glass-soft rounded-glass p-7">
+                        <span class="icon-chip mb-5">
+                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">hub</span>
+                        </span>
+                        <h3 class="font-display font-bold text-lg mb-2">Vahid məlumat mənbəyi</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Mənzillər, sahiblər və rollar tək modeldədir. Sürətli axtarış, növbə dəyişəndə isə daha az səhv.
+                        </p>
+                    </article>
+                    <article class="glass-soft rounded-glass p-7">
+                        <span class="icon-chip mb-5" style="background: linear-gradient(135deg, rgba(146,154,166,0.25), rgba(86,95,105,0.25)); color: #303942;">
+                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">payments</span>
+                        </span>
+                        <h3 class="font-display font-bold text-lg mb-2">Pul nəzarətdə</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Hesablamalar və ödənişlər bir-birinə bağlıdır: balans məntiqi yenilənir, cədvəldə «təxmini gözlə» ilə yox.
+                        </p>
+                    </article>
+                    <article class="glass-soft rounded-glass p-7">
+                        <span class="icon-chip mb-5" style="background: linear-gradient(135deg, rgba(134,143,154,0.25), rgba(79,88,98,0.25)); color: #2b333c;">
+                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">mark_chat_unread</span>
+                        </span>
+                        <h3 class="font-display font-bold text-lg mb-2">Təzyiq olmadan kommunikasiya</h3>
+                        <p class="text-sm text-muted leading-relaxed">
+                            Email və messencerlər prosesin parçasıdır — ayın sonunda ayrıca qaçış deyil.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DEMO ===== -->
+        <section id="demo" class="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+                <div>
+                    <p class="badge-liquid inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted rounded-pill px-3.5 py-1.5 mb-4">
+                        <span class="material-symbols-outlined text-base text-indigo-600" aria-hidden="true">gallery_thumbnail</span>
+                        İnterfeys
+                    </p>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold mb-3">
+                        Portalın real vizual mühitindən <span class="text-gradient">kadrlar</span>
+                    </h2>
+                    <p class="text-muted max-w-xl leading-relaxed">
+                        Aşağıda işlək eMTK layihəsindən materiallar var: firma nişanı və giriş ekranının vizual qatı —
+                        sakinlər və əməkdaşlar hər gün gördüyü eyni tipografika və palitra tətbiqin daxilində də belədir.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 self-start sm:self-end">
+                    <button id="demo-prev" type="button"
+                        class="icon-btn inline-flex h-11 w-11 items-center justify-center rounded-full text-ink"
+                        aria-label="Əvvəlki slayd">
+                        <span class="material-symbols-outlined text-xl" aria-hidden="true">chevron_left</span>
+                    </button>
+                    <button id="demo-next" type="button"
+                        class="icon-btn inline-flex h-11 w-11 items-center justify-center rounded-full text-ink"
+                        aria-label="Növbəti slayd">
+                        <span class="material-symbols-outlined text-xl" aria-hidden="true">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="demo-slider" class="demo-slider flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-3">
+                <!-- Card template repeated -->
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — dashboard</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/kdashboard.png" alt="eMTK portalı — əsas panel (dashboard)" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Əsas panel: ümumi baxış və əməliyyatlar üçün səliqəli şəbəkə.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — dashboard (alternativ)</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/sdashboard.png" alt="eMTK portalı — dashboard ekranı" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Eyni məntiqi fərqli kontekstdə: vizual ardıcıllıq saxlanılır.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — mənzillər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/kmenziller.png" alt="eMTK portalı — mənzillər modulu" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Mənzil fondu və axtarış — real məhsul kadrları.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — hesab-faktura</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/khesabfaktura.png" alt="eMTK portalı — hesab-faktura" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Hesab-faktura axını və cədvəl oxunaqlılığı.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — ödənişlər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/kodenisler.png" alt="eMTK portalı — ödənişlər" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Ödəniş əməliyyatları və statuslar.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — ödənişlər (S)</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/sodenisler.png" alt="eMTK portalı — ödənişlər ekranı" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Alternativ ödənişlər görünüşü.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — tarixçə</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/ktarixce.png" alt="eMTK portalı — tarixçə" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Əməliyyat tarixçəsi və izlənilə bilənlik.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — xərclər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/kxercler.png" alt="eMTK portalı — xərclər" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Xərclər modulu — real interfeys kadrları.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — tariflər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/ktarifler.png" alt="eMTK portalı — tariflər" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Tariflər və qiymətləndirmə ekranı.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — elanlar</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/kisveelan.png" alt="eMTK portalı — elanlar" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Elanlar və kommunikasiya.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — elanlar (S)</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/sisveelanlar.png" alt="eMTK portalı — elanlar siyahısı" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Elanlar modulunun alternativ kadrları.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — parametrlər</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/ksettings.png" alt="eMTK portalı — parametrlər" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Ümumi parametrlər ekranı.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — korpus parametrləri</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/ksettings-korpus.png" alt="eMTK portalı — korpus üçün parametrlər" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Korpus səviyyəsində konfiqurasiya.
+                    </figcaption>
+                </figure>
+
+                <figure class="demo-shot glass rounded-glass overflow-hidden">
+                    <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
+                        <span class="flex gap-1.5" aria-hidden="true">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#ff5f57"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
+                            <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
+                        </span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — MT parametrləri</span>
+                    </div>
+                    <div class="aspect-[16/11] overflow-hidden bg-white/30">
+                        <img src="static/demo/screens/k-settingsmt.png" alt="eMTK portalı — MT parametrləri" loading="lazy" width="1200" height="800" />
+                    </div>
+                    <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
+                        Əlavə parametrləşdirmə ekranı.
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="mt-10 glass rounded-glass px-6 py-7 flex flex-wrap items-center justify-center gap-6">
+                <div class="flex items-center gap-4">
+                    <a href="https://demo.emtk.az" target="_blank" rel="noopener noreferrer" aria-label="eMTK demo portalına keçid"
+                       class="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/60 shadow-lg overflow-hidden hover:scale-105 transition-transform"
+                       style="background: linear-gradient(135deg, #5b636f, #262b31);">
+                        <img src="static/demo/favicon.png" alt="eMTK nişanı" class="favicon-img h-[105%] w-auto object-contain object-[center_55%]" width="56" height="56" />
+                    </a>
+                    <div>
+                        <p class="font-display font-bold text-sm">İnterfeysdə nişan</p>
+                        <p class="text-xs text-muted max-w-[18rem]">Canlı portalın başlığında eyni fayl — əlfəcinlərdə və mobil ekranda tanınma.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CTA ===== -->
+        <section id="contact-cta" class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+            <div class="glass-dark rounded-glass px-8 sm:px-14 py-16 sm:py-20 text-center text-white relative overflow-hidden">
+                <!-- Decorative orbs inside -->
+                <span class="absolute -top-20 -left-20 w-80 h-80 rounded-full blur-3xl opacity-60" style="background: radial-gradient(circle, #7c8793, transparent 70%);"></span>
+                <span class="absolute -bottom-24 -right-16 w-96 h-96 rounded-full blur-3xl opacity-50" style="background: radial-gradient(circle, #5f6873, transparent 70%);"></span>
+                <div class="relative">
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 max-w-2xl mx-auto leading-tight">
+                        eMTK-nı öz binanızda və ya ünvan portfelinizdə göstərməyə hazırsınız?
+                    </h2>
+                    <p class="text-white/80 text-base max-w-xl mx-auto mb-8 leading-relaxed">
+                        Qısa zəng — platformanın prosesinizə necə oturduğunu artıq nəzəriyyə və yüz səhifəlik slaydsuz izah edərik.
+                    </p>
+                    <a href="#contact"
+                        class="inline-flex items-center gap-2 rounded-pill bg-white text-ink px-7 py-3.5 text-sm font-bold hover:bg-white/90 transition-all shadow-2xl hover:-translate-y-0.5">
+                        Əlaqəyə keç
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section id="contact" class="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+            <div class="grid lg:grid-cols-2 gap-8 items-start">
+                <div class="glass-strong rounded-glass p-8 sm:p-10">
+                    <p class="badge-liquid inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted rounded-pill px-3.5 py-1.5 mb-5">
+                        <span class="material-symbols-outlined text-base text-indigo-600" aria-hidden="true">forum</span>
+                        Əlaqə
+                    </p>
+                    <h2 class="font-display text-3xl font-bold mb-4">Yazın — <span class="text-gradient">insani dildə</span> cavab verəcəyik</h2>
+                    <p class="text-muted leading-relaxed mb-8">
+                        Bir neçə cümlədə yazın: neçə bina aparırsınız və ən çox nə ağrıyır — hesab-fakturalar, pul toplanması,
+                        yoxsa hesabat? İnsani dildə cavab verəcəyik, məcburi mailinq olmadan.
+                    </p>
+                    <ul class="space-y-4 text-sm">
+                        <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
+                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0">
+                                <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                            </span>
+                            <div>
+                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">Email</div>
+                                <a class="font-semibold text-ink hover:text-indigo-700 transition-colors" href="mailto:info@emtk.az">info@emtk.az</a>
+                            </div>
+                        </li>
+                        <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
+                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0" style="background: linear-gradient(135deg, rgba(138,147,158,0.25), rgba(81,89,99,0.25)); color: #2c353e;">
+                                <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+                            </span>
+                            <div>
+                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">WhatsApp</div>
+                                <a class="font-semibold text-ink hover:text-emerald-700 transition-colors" href="https://wa.me/994506617716" target="_blank" rel="noopener noreferrer">+994 50 661 77 16</a>
+                            </div>
+                        </li>
+                        <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
+                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0" style="background: linear-gradient(135deg, rgba(145,153,165,0.25), rgba(85,93,103,0.25)); color: #313941;">
+                                <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                            </span>
+                            <div>
+                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">Ünvan</div>
+                                <span class="font-semibold text-ink">Bakı, Azərbaycan</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="glass rounded-glass p-8 sm:p-10 flex flex-col gap-6">
+                    <span class="icon-chip !w-14 !h-14 !rounded-2xl">
+                        <span class="material-symbols-outlined text-3xl" aria-hidden="true">auto_awesome</span>
+                    </span>
+                    <p class="text-base leading-relaxed">
+                        Burada ayrıca <span class="font-semibold">«sayt admini»</span> yoxdur — bu, məhsulu təqdim etmək üçün yüngül vizitkadir.
+                        Bütün iş ssenariləri öz binanız və ya obyekt şəbəkəniz üçün qurduğunuz
+                        <span class="text-gradient font-semibold">eMTK portalının</span> özündə yaşayır.
+                    </p>
+                    <div class="mt-auto pt-4 border-t border-white/40 flex items-center gap-3 text-xs text-muted">
+                        <span class="material-symbols-outlined text-base text-indigo-600" aria-hidden="true">shield_person</span>
+                        <span>Mailinq yox · spam yox · sadəcə cavab</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-auto px-4 sm:px-6 pb-6">
+        <div class="glass max-w-6xl mx-auto rounded-glass px-6 sm:px-8 py-6 flex flex-col sm:flex-row justify-between gap-4 items-center text-xs text-muted">
+            <span>© 2026 eMTK. Bina idarəçiliyi üçün rəqəmsal kontur.</span>
+            <span class="text-center sm:text-right">Manrope + Inter · Liquid Glass interfeysi</span>
+        </div>
+    </footer>
+
+    <script>
+        (() => {
+            const initSliderControls = (sliderId, prevId, nextId, gap = 24) => {
+                const slider = document.getElementById(sliderId);
+                const prevButton = document.getElementById(prevId);
+                const nextButton = document.getElementById(nextId);
+
+                if (!slider || !prevButton || !nextButton) return;
+
+                const scrollByCard = (direction) => {
+                    const firstCard = slider.querySelector('figure');
+                    if (!firstCard) return;
+                    const amount = firstCard.getBoundingClientRect().width + gap;
+                    slider.scrollBy({ left: amount * direction, behavior: 'smooth' });
+                };
+
+                prevButton.addEventListener('click', () => scrollByCard(-1));
+                nextButton.addEventListener('click', () => scrollByCard(1));
+            };
+
+            initSliderControls('hero-slider', 'hero-prev', 'hero-next', 12);
+            initSliderControls('demo-slider', 'demo-prev', 'demo-next', 20);
+
+            // Lightbox
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox-backdrop';
+            lightbox.setAttribute('role', 'dialog');
+            lightbox.setAttribute('aria-modal', 'true');
+            lightbox.setAttribute('aria-label', 'Şəkil önizləməsi');
+            lightbox.setAttribute('data-open', 'false');
+
+            const lightboxImg = document.createElement('img');
+            lightboxImg.className = 'lightbox-image';
+            lightboxImg.alt = '';
+
+            const closeButton = document.createElement('button');
+            closeButton.type = 'button';
+            closeButton.className = 'lightbox-close';
+            closeButton.setAttribute('aria-label', 'Bağla');
+            closeButton.innerHTML = '&times;';
+
+            const closeLightbox = () => {
+                lightbox.setAttribute('data-open', 'false');
+                document.body.style.overflow = '';
+            };
+
+            closeButton.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (event) => {
+                if (event.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && lightbox.getAttribute('data-open') === 'true') {
+                    closeLightbox();
+                }
+            });
+
+            lightbox.appendChild(lightboxImg);
+            lightbox.appendChild(closeButton);
+            document.body.appendChild(lightbox);
+
+            document.querySelectorAll('.demo-shot img').forEach((img) => {
+                img.addEventListener('click', () => {
+                    lightboxImg.src = img.currentSrc || img.src;
+                    lightboxImg.alt = img.alt || 'Portal görüntüsü';
+                    lightbox.setAttribute('data-open', 'true');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
