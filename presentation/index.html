@@ -245,15 +245,31 @@
         }
 
         @media (max-width: 1280px) {
-            .slide { padding: 3rem; }
-            .grid-layout { gap: 2.5rem; }
+            .slide {
+                padding: 3rem;
+            }
+
+            .grid-layout {
+                gap: 2.5rem;
+            }
         }
 
         @media (max-width: 1024px) {
-            .slide { padding: 2rem; }
-            .glass-card { padding: 2rem; }
-            .grid-layout { gap: 2rem; }
-            .slide-image img { max-height: 55vh; }
+            .slide {
+                padding: 2rem;
+            }
+
+            .glass-card {
+                padding: 2rem;
+            }
+
+            .grid-layout {
+                gap: 2rem;
+            }
+
+            .slide-image img {
+                max-height: 55vh;
+            }
         }
 
         @media (max-width: 768px) {
@@ -281,9 +297,14 @@
                 overflow-x: hidden;
             }
 
-            .slide.active { display: flex; }
+            .slide.active {
+                display: flex;
+            }
 
-            .slide-content { padding: 0; width: 100%; }
+            .slide-content {
+                padding: 0;
+                width: 100%;
+            }
 
             .glass-card {
                 padding: 1.25rem;
@@ -300,7 +321,9 @@
                 gap: 1.25rem;
             }
 
-            .slide-image { order: -1 !important; }
+            .slide-image {
+                order: -1 !important;
+            }
 
             .slide-image img {
                 transform: none !important;
@@ -312,7 +335,9 @@
                 gap: 0.6rem;
             }
 
-            .bento-item { padding: 0.75rem !important; }
+            .bento-item {
+                padding: 0.75rem !important;
+            }
 
             .slide-footer-text {
                 margin-top: 1.25rem !important;
@@ -352,7 +377,11 @@
                 margin-top: 1.25rem;
             }
 
-            .bg-glow, .bg-glow-2 { width: 250px; height: 250px; }
+            .bg-glow,
+            .bg-glow-2 {
+                width: 250px;
+                height: 250px;
+            }
 
             .slide:nth-child(12) div[style*="display: flex"] {
                 font-size: 1.1rem !important;
@@ -363,8 +392,15 @@
         }
 
         @media (max-width: 480px) {
-            .slide { padding: 1rem; padding-top: 4rem; padding-bottom: 5.5rem; }
-            .bento-grid { grid-template-columns: 1fr; }
+            .slide {
+                padding: 1rem;
+                padding-top: 4rem;
+                padding-bottom: 5.5rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Controls */

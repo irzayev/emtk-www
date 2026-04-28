@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="eMTK — binanızı idarə etmək üçün rəqəmsal mühit: sakinlər, hesab-fakturalar, ödənişlər və hesabatlar tək sakit interfeysdə." />
+        content="eMTK — binanızı idarə etmək üçün rəqəmsal mühit: Sakinlər, hesab-fakturalar, ödənişlər və hesabatlar tək sakit interfeysdə." />
     <title>eMTK — bina idarəçiliyi portalı</title>
     <link rel="icon" href="static/demo/favicon.png" type="image/png" />
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
@@ -1178,11 +1178,11 @@
                                 style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(34,197,94,0.2)); color: #047857;">
                                 <span class="material-symbols-outlined" aria-hidden="true">chat</span>
                             </span>
-                            <div>
+                            <div href="https://wa.me/994506617716">
                                 <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">
                                     WhatsApp</div>
                                 <a class="font-semibold text-ink hover:text-emerald-700 transition-colors"
-                                    href="https://wa.me/994506617716" target="_blank" rel="noopener noreferrer">+994 50
+                                    target="_blank" rel="noopener noreferrer">+994 50
                                     661 77 16</a>
                             </div>
                         </li>
@@ -1297,7 +1297,7 @@
             // Theme Switcher Logic
             const themeSwitcher = document.getElementById('theme-switcher');
             const options = themeSwitcher.querySelectorAll('.theme-switch-option');
-            
+
             const setTheme = (theme) => {
                 if (theme === 'dark') {
                     document.body.classList.add('dark');
@@ -1312,8 +1312,8 @@
             };
 
             // Check for saved theme or system preference
-            const savedTheme = localStorage.getItem('theme') || 
-                               (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const savedTheme = localStorage.getItem('theme') ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             setTheme(savedTheme);
 
             themeSwitcher.addEventListener('click', () => {
