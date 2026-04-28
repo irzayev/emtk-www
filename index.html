@@ -622,6 +622,32 @@
         .theme-switch-option.active {
             color: var(--ink);
         }
+        .contact-link-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 1rem;
+            width: 100%;
+            text-decoration: none !important;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+
+        .contact-link-card:hover {
+            transform: scale(1.02);
+        }
+
+        .contact-link-card:active {
+            transform: scale(1.04);
+        }
+
+        .contact-link-card .icon-chip {
+            transition: transform 0.2s ease;
+        }
+
+        .contact-link-card:hover .icon-chip {
+            transform: rotate(-5deg) scale(1.1);
+        }
     </style>
 </head>
 
@@ -1162,29 +1188,31 @@
 
                     </p>
                     <ul class="space-y-4 text-sm">
-                        <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
-                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0">
-                                <span class="material-symbols-outlined" aria-hidden="true">mail</span>
-                            </span>
-                            <div>
-                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">Email
+                        <li class="glass-soft rounded-2xl overflow-hidden">
+                            <a href="mailto:info@emtk.az" class="contact-link-card">
+                                <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0">
+                                    <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                                </span>
+                                <div>
+                                    <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">Email
+                                    </div>
+                                    <span class="font-semibold text-ink">info@emtk.az</span>
                                 </div>
-                                <a class="font-semibold text-ink hover:text-indigo-700 transition-colors"
-                                    href="mailto:info@emtk.az">info@emtk.az</a>
-                            </div>
+                            </a>
                         </li>
-                        <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
-                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0"
-                                style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(34,197,94,0.2)); color: #047857;">
-                                <span class="material-symbols-outlined" aria-hidden="true">chat</span>
-                            </span>
-                            <div href="https://wa.me/994506617716">
-                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">
-                                    WhatsApp</div>
-                                <a class="font-semibold text-ink hover:text-emerald-700 transition-colors"
-                                    target="_blank" rel="noopener noreferrer">+994 50
-                                    661 77 16</a>
-                            </div>
+                        <li class="glass-soft rounded-2xl overflow-hidden">
+                            <a href="https://wa.me/994506617716" target="_blank" rel="noopener noreferrer"
+                                class="contact-link-card">
+                                <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0"
+                                    style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(34,197,94,0.2)); color: #047857;">
+                                    <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+                                </span>
+                                <div>
+                                    <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">
+                                        WhatsApp</div>
+                                    <span class="font-semibold text-ink">+994 50 661 77 16</span>
+                                </div>
+                            </a>
                         </li>
                         <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
                             <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0"
