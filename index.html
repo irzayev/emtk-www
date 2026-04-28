@@ -14,7 +14,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
         rel="stylesheet" />
     <script>
         tailwind.config = {
@@ -49,7 +50,10 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .font-display {
+        h1,
+        h2,
+        h3,
+        .font-display {
             font-family: Manrope, Inter, system-ui, sans-serif;
             letter-spacing: -0.025em;
         }
@@ -78,31 +82,39 @@
         }
 
         .blob-1 {
-            width: 520px; height: 520px;
-            top: -120px; left: -80px;
+            width: 520px;
+            height: 520px;
+            top: -120px;
+            left: -80px;
             background: radial-gradient(circle, #6366f1, #22d3ee);
             animation-delay: 0s;
         }
 
         .blob-2 {
-            width: 640px; height: 640px;
-            top: 20%; right: -180px;
+            width: 640px;
+            height: 640px;
+            top: 20%;
+            right: -180px;
             background: radial-gradient(circle, #ec4899, #f59e0b);
             animation-delay: -7s;
             animation-duration: 26s;
         }
 
         .blob-3 {
-            width: 580px; height: 580px;
-            bottom: -160px; left: 20%;
+            width: 580px;
+            height: 580px;
+            bottom: -160px;
+            left: 20%;
             background: radial-gradient(circle, #8b5cf6, #3b82f6);
             animation-delay: -14s;
             animation-duration: 30s;
         }
 
         .blob-4 {
-            width: 420px; height: 420px;
-            top: 55%; right: 25%;
+            width: 420px;
+            height: 420px;
+            top: 55%;
+            right: 25%;
             background: radial-gradient(circle, #14b8a6, #60a5fa);
             opacity: 0.5;
             animation-delay: -3s;
@@ -110,10 +122,23 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(40px, -30px) scale(1.08); }
-            50% { transform: translate(-20px, 40px) scale(0.95); }
-            75% { transform: translate(30px, 20px) scale(1.04); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(40px, -30px) scale(1.08);
+            }
+
+            50% {
+                transform: translate(-20px, 40px) scale(0.95);
+            }
+
+            75% {
+                transform: translate(30px, 20px) scale(1.04);
+            }
         }
 
         /* Subtle grain for realism */
@@ -302,24 +327,24 @@
             display: none;
         }
 
-        .demo-slider > figure {
+        .demo-slider>figure {
             flex: 0 0 calc(100% - 0.5rem);
             scroll-snap-align: start;
         }
 
         @media (min-width: 768px) {
-            .demo-slider > figure {
+            .demo-slider>figure {
                 flex-basis: 72%;
             }
         }
 
         @media (min-width: 1024px) {
-            .demo-slider > figure {
+            .demo-slider>figure {
                 flex-basis: 56%;
             }
         }
 
-        .hero-slider > figure {
+        .hero-slider>figure {
             flex: 0 0 100%;
             scroll-snap-align: start;
         }
@@ -388,9 +413,11 @@
         .section-glow::before {
             content: '';
             position: absolute;
-            top: 0; left: 50%;
+            top: 0;
+            left: 50%;
             transform: translateX(-50%);
-            width: 60%; height: 1px;
+            width: 60%;
+            height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
         }
     </style>
@@ -408,11 +435,14 @@
 
     <!-- Floating glass header -->
     <header class="sticky top-4 z-40 px-4 sm:px-6">
-        <div class="glass-strong max-w-5xl mx-auto rounded-pill px-3 sm:px-5 h-14 flex items-center justify-between gap-3">
+        <div
+            class="glass-strong max-w-5xl mx-auto rounded-pill px-3 sm:px-5 h-14 flex items-center justify-between gap-3">
             <a href="#top" class="flex items-center gap-2.5 no-underline text-ink pl-1">
-                <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl overflow-hidden border border-white/60 shadow-sm"
-                      style="background: linear-gradient(135deg, #4f46e5, #9333ea);">
-                    <img src="static/demo/favicon.png" alt="" class="favicon-img h-[105%] w-auto object-contain object-[center_3px]" width="28" height="28" />
+                <span
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-2xl overflow-hidden border border-white/60 shadow-sm"
+                    style="background: linear-gradient(135deg, #4f46e5, #9333ea);">
+                    <img src="static/demo/favicon.png" alt=""
+                        class="favicon-img h-[105%] w-auto object-contain object-[center_3px]" width="28" height="28" />
                 </span>
                 <span class="font-display font-extrabold text-lg tracking-tight text-gradient">eMTK</span>
             </a>
@@ -422,8 +452,7 @@
                 <a href="#contact-cta" class="hover:text-ink transition-colors">Əlaqə</a>
                 <a href="/emtk.az.pdf" class="hover:text-ink transition-colors">Təqdimat</a>
             </nav>
-            <a href="mailto:info@emtk.az"
-                class="btn-liquid text-sm font-semibold rounded-pill px-4 py-2">
+            <a href="mailto:info@emtk.az" class="btn-liquid text-sm font-semibold rounded-pill px-4 py-2">
                 Yazın
             </a>
         </div>
@@ -444,7 +473,8 @@
                     <p class="text-lg text-muted leading-relaxed max-w-xl">
                         eMTK idarəetmə şirkətinin gündəlik fəaliyyətini vahid rəqəmsal mühitdə birləşdirir:
                         kim yaşayır, nə hesablanıb, nə ödənilib və hansı işlər hələ görülməlidir — hamısı bir yerdə.
-                        Əl ilə əlaqə və zənglər minimuma enir, proseslər daha proqnozlaşdırılan olur, sakinlər üçün isə etibar və rahatlıq artır.
+                        Əl ilə əlaqə və zənglər minimuma enir, proseslər daha proqnozlaşdırılan olur, sakinlər üçün isə
+                        etibar və rahatlıq artır.
                     </p>
                     <div class="flex flex-wrap gap-3 pt-2">
                         <a href="#demo"
@@ -473,23 +503,26 @@
                         </button>
                     </div>
                     <div class="glass-strong rounded-glass p-2 sm:p-3">
-                        <div id="hero-slider" class="demo-slider hero-slider flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-[1.25rem]">
+                        <div id="hero-slider"
+                            class="demo-slider hero-slider flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-[1.25rem]">
                             <figure class="demo-shot snap-start rounded-[1.25rem] overflow-hidden">
                                 <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-white/30">
-                                    <img src="static/demo/screens/loginscreen.png" alt="eMTK portalı — giriş ekranı"
+                                    <img src="static/demo/loginscreen.png" alt="eMTK portalı — giriş ekranı"
                                         loading="eager" width="1200" height="800" />
                                 </div>
                             </figure>
                             <figure class="demo-shot snap-start rounded-[1.25rem] overflow-hidden">
                                 <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-white/30">
-                                    <img src="static/demo/screens/loginscreen-dark.png" alt="eMTK portalı — giriş səhifəsi (tünd)"
-                                        loading="lazy" width="1200" height="800" />
+                                    <img src="static/demo/loginscreen-dark.png"
+                                        alt="eMTK portalı — giriş səhifəsi (tünd)" loading="lazy" width="1200"
+                                        height="800" />
                                 </div>
                             </figure>
                             <figure class="demo-shot snap-start rounded-[1.25rem] overflow-hidden">
                                 <div class="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-white/30">
-                                    <img src="static/demo/screens/kdashboard-dark.png" alt="eMTK portalı — dashboard ekranı (dark)"
-                                        loading="lazy" width="1200" height="800" />
+                                    <img src="static/demo/kdashboard-dark.png"
+                                        alt="eMTK portalı — dashboard ekranı (dark)" loading="lazy" width="1200"
+                                        height="800" />
                                 </div>
                             </figure>
                         </div>
@@ -508,7 +541,8 @@
                     </div>
                     <div class="hidden lg:block absolute -right-4 bottom-6 glass rounded-2xl px-4 py-3 shadow-xl">
                         <div class="flex items-center gap-3">
-                            <span class="icon-chip !w-10 !h-10 !rounded-xl" style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(59,130,246,0.2)); color: #047857;">
+                            <span class="icon-chip !w-10 !h-10 !rounded-xl"
+                                style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(59,130,246,0.2)); color: #047857;">
                                 <span class="material-symbols-outlined text-xl" aria-hidden="true">task_alt</span>
                             </span>
                             <div>
@@ -530,8 +564,10 @@
                         Komandalar <span class="text-gradient">niyə vahid rəqəmsal mühit</span> seçirlər?
                     </h2>
                     <p class="text-muted text-lg leading-relaxed">
-                        Məlumatlar bir platformada toplandıqda mühasib, dispetçer və sakinlər arasında yaranan “kor zonalar” aradan qalxır.
-                        eMTK gündəlik və aylıq iş proseslərini sistemləşdirir: tariflər → hesablamalar → xatırlatmalar → ödənişlər → hesabatlar — hamısı ardıcıl və nəzarət olunan şəkildə.
+                        Məlumatlar bir platformada toplandıqda mühasib, dispetçer və sakinlər arasında yaranan “kor
+                        zonalar” aradan qalxır.
+                        eMTK gündəlik və aylıq iş proseslərini sistemləşdirir: tariflər → hesablamalar → xatırlatmalar →
+                        ödənişlər → hesabatlar — hamısı ardıcıl və nəzarət olunan şəkildə.
                     </p>
                 </div>
                 <div class="grid sm:grid-cols-3 gap-5">
@@ -541,23 +577,28 @@
                         </span>
                         <h3 class="font-display font-bold text-lg mb-2">Vahid məlumat mənbəyi</h3>
                         <p class="text-sm text-muted leading-relaxed">
-                            Mənzillər, sahiblər və istifadəçi rolları vahid sistemdə toplanır. Bu, sürətli axtarışı təmin edir və əməkdaş dəyişiklikləri zamanı səhvlərin qarşısını minimuma endirir.                        </p>
+                            Mənzillər, sahiblər və istifadəçi rolları vahid sistemdə toplanır. Bu, sürətli axtarışı
+                            təmin edir və əməkdaş dəyişiklikləri zamanı səhvlərin qarşısını minimuma endirir. </p>
                     </article>
                     <article class="glass-soft rounded-glass p-7">
-                        <span class="icon-chip mb-5" style="background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(245,158,11,0.2)); color: #be185d;">
+                        <span class="icon-chip mb-5"
+                            style="background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(245,158,11,0.2)); color: #be185d;">
                             <span class="material-symbols-outlined text-2xl" aria-hidden="true">payments</span>
                         </span>
                         <h3 class="font-display font-bold text-lg mb-2">Maliyyə nəzarəti</h3>
                         <p class="text-sm text-muted leading-relaxed">
-                            Hesablamalar və ödənişlər vahid sistemdə inteqrasiya olunur: balanslar avtomatik və dəqiq yenilənir, məlumatlar artıq “təxmini” deyil, real göstəricilərə əsaslanır.                        </p>
+                            Hesablamalar və ödənişlər vahid sistemdə inteqrasiya olunur: balanslar avtomatik və dəqiq
+                            yenilənir, məlumatlar artıq “təxmini” deyil, real göstəricilərə əsaslanır. </p>
                     </article>
                     <article class="glass-soft rounded-glass p-7">
-                        <span class="icon-chip mb-5" style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(14,165,233,0.2)); color: #0f766e;">
+                        <span class="icon-chip mb-5"
+                            style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(14,165,233,0.2)); color: #0f766e;">
                             <span class="material-symbols-outlined text-2xl" aria-hidden="true">mark_chat_unread</span>
                         </span>
                         <h3 class="font-display font-bold text-lg mb-2">Rahat və davamlı kommunikasiya</h3>
                         <p class="text-sm text-muted leading-relaxed">
-                            E-poçt və messencerlər iş prosesinə inteqrasiya olunub — ayın sonunda əlavə yük yaradan ayrıca mərhələ kimi deyil, gündəlik axının təbii hissəsi kimi işləyir.                        </p>
+                            E-poçt və messencerlər iş prosesinə inteqrasiya olunub — ayın sonunda əlavə yük yaradan
+                            ayrıca mərhələ kimi deyil, gündəlik axının təbii hissəsi kimi işləyir. </p>
                     </article>
                 </div>
             </div>
@@ -572,7 +613,9 @@
                         Portalın <span class="text-gradient">nümunələri</span>
                     </h2>
                     <p class="text-muted max-w-xl leading-relaxed">
-                        eMTK-nın "demo" layihəsindən götürülmüş materiallar təqdim olunur. Sakinlərin və əməkdaşların hər gün gördüyü tipografiya və rəng palitrası tətbiqin daxilində də eyni şəkildə qorunur, vahid vizual təcrübə təmin edilir.
+                        eMTK-nın "demo" layihəsindən götürülmüş materiallar təqdim olunur. Sakinlərin və əməkdaşların
+                        hər gün gördüyü tipografiya və rəng palitrası tətbiqin daxilində də eyni şəkildə qorunur, vahid
+                        vizual təcrübə təmin edilir.
                     </p>
                 </div>
                 <div class="flex items-center gap-2 self-start sm:self-end">
@@ -589,7 +632,8 @@
                 </div>
             </div>
 
-            <div id="demo-slider" class="demo-slider flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-3">
+            <div id="demo-slider"
+                class="demo-slider flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-3">
                 <!-- Card template repeated -->
                 <figure class="demo-shot glass rounded-glass overflow-hidden">
                     <div class="browser-chrome px-4 py-2.5 flex items-center gap-2">
@@ -601,7 +645,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — dashboard</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/kdashboard.png" alt="eMTK portalı — əsas panel (dashboard)" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/kdashboard.png" alt="eMTK portalı — əsas panel (dashboard)" loading="lazy"
+                            width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Əsas panel: ümumi baxış və əməliyyatlar üçün səliqəli şəbəkə.
@@ -615,10 +660,12 @@
                             <span class="w-2.5 h-2.5 rounded-full" style="background:#febc2e"></span>
                             <span class="w-2.5 h-2.5 rounded-full" style="background:#28c840"></span>
                         </span>
-                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — dashboard (alternativ)</span>
+                        <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — dashboard
+                            (alternativ)</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/sdashboard.png" alt="eMTK portalı — dashboard ekranı" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/sdashboard.png" alt="eMTK portalı — dashboard ekranı" loading="lazy"
+                            width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Eyni məntiqi fərqli kontekstdə: vizual ardıcıllıq saxlanılır.
@@ -635,7 +682,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Mənzillər</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/kmenziller.png" alt="eMTK portalı — mənzillər modulu" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/kmenziller.png" alt="eMTK portalı — mənzillər modulu" loading="lazy"
+                            width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Mənzil fondu və axtarış.
@@ -652,7 +700,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Hesab-faktura</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/khesabfaktura.png" alt="eMTK portalı — hesab-faktura" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/khesabfaktura.png" alt="eMTK portalı — hesab-faktura" loading="lazy"
+                            width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Hesab-faktura axını və cədvəl oxunaqlılığı.
@@ -669,7 +718,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Ödənişlər</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/kodenisler.png" alt="eMTK portalı — ödənişlər" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/kodenisler.png" alt="eMTK portalı — ödənişlər" loading="lazy" width="1200"
+                            height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Ödəniş əməliyyatları və statuslar.
@@ -686,7 +736,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Ödənişlər (S)</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/sodenisler.png" alt="eMTK portalı — ödənişlər ekranı" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/sodenisler.png" alt="eMTK portalı — ödənişlər ekranı" loading="lazy"
+                            width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Alternativ ödənişlər görünüşü.
@@ -703,7 +754,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Tarixçə</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/ktarixce.png" alt="eMTK portalı — tarixçə" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/ktarixce.png" alt="eMTK portalı — tarixçə" loading="lazy" width="1200"
+                            height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Əməliyyat tarixçəsi və izlənilə bilənlik.
@@ -720,7 +772,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Xərclər</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/kxercler.png" alt="eMTK portalı — xərclər" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/kxercler.png" alt="eMTK portalı — xərclər" loading="lazy" width="1200"
+                            height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Xərclər modulu — real interfeys kadrları.
@@ -737,7 +790,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Tariflər</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/ktarifler.png" alt="eMTK portalı — tariflər" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/ktarifler.png" alt="eMTK portalı — tariflər" loading="lazy" width="1200"
+                            height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Tariflər və qiymətləndirmə ekranı.
@@ -754,7 +808,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Elanlar</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/kisveelan.png" alt="eMTK portalı — elanlar" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/kisveelan.png" alt="eMTK portalı — elanlar" loading="lazy" width="1200"
+                            height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Elanlar və kommunikasiya.
@@ -771,7 +826,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Elanlar (S)</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/sisveelanlar.png" alt="eMTK portalı — elanlar siyahısı" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/sisveelanlar.png" alt="eMTK portalı — elanlar siyahısı" loading="lazy"
+                            width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Elanlar.
@@ -788,7 +844,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Parametrlər</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/ksettings.png" alt="eMTK portalı — parametrlər" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/ksettings.png" alt="eMTK portalı — parametrlər" loading="lazy"
+                            width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Ümumi parametrlər ekranı.
@@ -805,7 +862,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">Bina\Korpus parametrləri</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/ksettings-korpus.png" alt="eMTK portalı — korpus üçün parametrlər" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/ksettings-korpus.png" alt="eMTK portalı — korpus üçün parametrlər"
+                            loading="lazy" width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Korpus səviyyəsində konfiqurasiya.
@@ -822,7 +880,8 @@
                         <span class="text-[11px] text-muted flex-1 text-center truncate">eMTK — MT parametrləri</span>
                     </div>
                     <div class="aspect-[16/11] overflow-hidden bg-white/30">
-                        <img src="static/demo/screens/k-settingsmt.png" alt="eMTK portalı — MT parametrləri" loading="lazy" width="1200" height="800" />
+                        <img src="static/demo/k-settingsmt.png" alt="eMTK portalı — MT parametrləri" loading="lazy"
+                            width="1200" height="800" />
                     </div>
                     <figcaption class="px-4 py-3 text-xs text-muted border-t border-white/40 bg-white/30">
                         Əlavə parametrləşdirmə ekranı.
@@ -832,10 +891,13 @@
 
             <div class="mt-10 glass rounded-glass px-6 py-7 flex flex-wrap items-center justify-center gap-6">
                 <div class="flex items-center gap-4">
-                    <a href="https://demo.emtk.az" target="_blank" rel="noopener noreferrer" aria-label="eMTK demo portalına keçid"
-                       class="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/60 shadow-lg overflow-hidden hover:scale-105 transition-transform"
-                       style="background: linear-gradient(135deg, #4f46e5, #9333ea);">
-                        <img src="static/demo/favicon.png" alt="eMTK nişanı" class="favicon-img h-[105%] w-auto object-contain object-[center_55%]" width="56" height="56" />
+                    <a href="https://demo.emtk.az" target="_blank" rel="noopener noreferrer"
+                        aria-label="eMTK demo portalına keçid"
+                        class="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/60 shadow-lg overflow-hidden hover:scale-105 transition-transform"
+                        style="background: linear-gradient(135deg, #4f46e5, #9333ea);">
+                        <img src="static/demo/favicon.png" alt="eMTK nişanı"
+                            class="favicon-img h-[105%] w-auto object-contain object-[center_55%]" width="56"
+                            height="56" />
                     </a>
                     <div>
                         <p class="font-display font-bold text-sm">eMTK Demo</p>
@@ -847,16 +909,20 @@
 
         <!-- ===== CTA ===== -->
         <section id="contact-cta" class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
-            <div class="glass-dark rounded-glass px-8 sm:px-14 py-16 sm:py-20 text-center text-white relative overflow-hidden">
+            <div
+                class="glass-dark rounded-glass px-8 sm:px-14 py-16 sm:py-20 text-center text-white relative overflow-hidden">
                 <!-- Decorative orbs inside -->
-                <span class="absolute -top-20 -left-20 w-80 h-80 rounded-full blur-3xl opacity-60" style="background: radial-gradient(circle, #6366f1, transparent 70%);"></span>
-                <span class="absolute -bottom-24 -right-16 w-96 h-96 rounded-full blur-3xl opacity-50" style="background: radial-gradient(circle, #ec4899, transparent 70%);"></span>
+                <span class="absolute -top-20 -left-20 w-80 h-80 rounded-full blur-3xl opacity-60"
+                    style="background: radial-gradient(circle, #6366f1, transparent 70%);"></span>
+                <span class="absolute -bottom-24 -right-16 w-96 h-96 rounded-full blur-3xl opacity-50"
+                    style="background: radial-gradient(circle, #ec4899, transparent 70%);"></span>
                 <div class="relative">
                     <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 max-w-2xl mx-auto leading-tight">
                         eMTK-nı öz binanızda və ya ünvan portfelinizdə göstərməyə hazırsınız?
                     </h2>
                     <p class="text-white/80 text-base max-w-xl mx-auto mb-8 leading-relaxed">
-                        Qısa zəng — platformanın prosesinizə necə oturduğunu artıq nəzəriyyə və yüz səhifəlik slaydsuz izah edərik.
+                        Qısa zəng — platformanın prosesinizə necə oturduğunu artıq nəzəriyyə və yüz səhifəlik slaydsuz
+                        izah edərik.
                     </p>
                     <a href="#contact"
                         class="inline-flex items-center gap-2 rounded-pill bg-white text-ink px-7 py-3.5 text-sm font-bold hover:bg-white/90 transition-all shadow-2xl hover:-translate-y-0.5">
@@ -872,9 +938,10 @@
             <div class="grid lg:grid-cols-2 gap-8 items-start">
                 <div class="glass-strong rounded-glass p-8 sm:p-10">
 
-                    <h2 class="font-display text-3xl font-bold mb-4">Yazın — <span class="text-gradient"> </span>cavab verəcəyik</h2>
+                    <h2 class="font-display text-3xl font-bold mb-4">Yazın — <span class="text-gradient"> </span>cavab
+                        verəcəyik</h2>
                     <p class="text-muted leading-relaxed mb-8">
-                
+
                     </p>
                     <ul class="space-y-4 text-sm">
                         <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
@@ -882,25 +949,33 @@
                                 <span class="material-symbols-outlined" aria-hidden="true">mail</span>
                             </span>
                             <div>
-                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">Email</div>
-                                <a class="font-semibold text-ink hover:text-indigo-700 transition-colors" href="mailto:info@emtk.az">info@emtk.az</a>
+                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">Email
+                                </div>
+                                <a class="font-semibold text-ink hover:text-indigo-700 transition-colors"
+                                    href="mailto:info@emtk.az">info@emtk.az</a>
                             </div>
                         </li>
                         <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
-                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0" style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(34,197,94,0.2)); color: #047857;">
+                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0"
+                                style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(34,197,94,0.2)); color: #047857;">
                                 <span class="material-symbols-outlined" aria-hidden="true">chat</span>
                             </span>
                             <div>
-                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">WhatsApp</div>
-                                <a class="font-semibold text-ink hover:text-emerald-700 transition-colors" href="https://wa.me/994506617716" target="_blank" rel="noopener noreferrer">+994 50 661 77 16</a>
+                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">
+                                    WhatsApp</div>
+                                <a class="font-semibold text-ink hover:text-emerald-700 transition-colors"
+                                    href="https://wa.me/994506617716" target="_blank" rel="noopener noreferrer">+994 50
+                                    661 77 16</a>
                             </div>
                         </li>
                         <li class="glass-soft rounded-2xl px-4 py-3.5 flex gap-4 items-center">
-                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0" style="background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(168,85,247,0.2)); color: #a21caf;">
+                            <span class="icon-chip !w-11 !h-11 !rounded-xl shrink-0"
+                                style="background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(168,85,247,0.2)); color: #a21caf;">
                                 <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
                             </span>
                             <div>
-                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">Ünvan</div>
+                                <div class="text-[11px] font-semibold uppercase tracking-wider text-muted mb-0.5">Ünvan
+                                </div>
                                 <span class="font-semibold text-ink">Bakı, Azərbaycan</span>
                             </div>
                         </li>
@@ -914,7 +989,8 @@
                         <span class="text-gradient font-semibold">eMTK</span> Portalı.
                     </p>
                     <div class="mt-auto pt-4 border-t border-white/40 flex items-center gap-3 text-xs text-muted">
-                        <span class="material-symbols-outlined text-base text-indigo-600" aria-hidden="true">shield_person</span>
+                        <span class="material-symbols-outlined text-base text-indigo-600"
+                            aria-hidden="true">shield_person</span>
                         <span></span>
                     </div>
                 </div>
@@ -923,7 +999,8 @@
     </main>
 
     <footer class="mt-auto px-4 sm:px-6 pb-6">
-        <div class="glass max-w-6xl mx-auto rounded-glass px-6 sm:px-8 py-6 flex flex-col sm:flex-row justify-between gap-4 items-center text-xs text-muted">
+        <div
+            class="glass max-w-6xl mx-auto rounded-glass px-6 sm:px-8 py-6 flex flex-col sm:flex-row justify-between gap-4 items-center text-xs text-muted">
             <span>© 2026 eMTK. Bina idarəçiliyi üçün rəqəmsal sistemi.</span>
             <span class="text-center sm:text-right">by itg.az</span>
         </div>
