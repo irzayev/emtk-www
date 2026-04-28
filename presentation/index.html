@@ -103,33 +103,38 @@
 
         /* Slide specific layouts */
         .title-slide h1 {
-            font-size: 5rem;
+            font-size: clamp(2rem, 6vw, 5rem);
             margin-bottom: 1rem;
             line-height: 1.1;
+            word-break: break-word;
         }
 
         .title-slide h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.2rem, 3vw, 2.5rem);
             margin-bottom: 1.5rem;
             font-weight: 400;
+            word-break: break-word;
         }
 
         .title-slide p {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.5rem);
             color: var(--text-muted);
             max-width: 800px;
+            overflow-wrap: break-word;
         }
 
         .slide-header {
-            font-size: 3.5rem;
-            margin-bottom: 3rem;
+            font-size: clamp(1.4rem, 3.5vw, 3.5rem);
+            margin-bottom: clamp(1rem, 2.5vw, 3rem);
             text-align: center;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         .grid-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: clamp(1.5rem, 3vw, 4rem);
             align-items: center;
         }
 
@@ -138,20 +143,22 @@
         }
 
         .features-list li {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 1.8vw, 1.5rem);
+            margin-bottom: clamp(0.8rem, 1.2vw, 1.5rem);
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
             background: rgba(255, 255, 255, 0.03);
-            padding: 1rem 1.5rem;
+            padding: clamp(0.6rem, 1vw, 1rem) clamp(0.8rem, 1.2vw, 1.5rem);
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s, background 0.3s;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .features-list li:hover {
-            transform: translateX(10px);
+            transform: translateX(8px);
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 255, 255, 0.2);
         }
@@ -163,6 +170,7 @@
             justify-content: center;
             width: 32px;
             height: 32px;
+            min-width: 32px;
             background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
             border-radius: 50%;
             font-size: 1rem;
@@ -196,7 +204,7 @@
         }
 
         .result-list li {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
             font-weight: bold;
             justify-content: center;
             text-align: center;
@@ -204,21 +212,23 @@
 
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: clamp(0.8rem, 1.5vw, 2rem);
         }
 
+        /* Override inline white-space:nowrap on bento-items for responsiveness */
         .bento-item {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 2.5rem 2rem;
+            padding: clamp(1rem, 1.5vw, 2.5rem) clamp(0.8rem, 1.2vw, 2rem);
             text-align: center;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            white-space: normal !important;
+            overflow: hidden;
         }
 
         .bento-item:hover {
@@ -228,34 +238,22 @@
         }
 
         .bento-item h3 {
-            font-size: 1.8rem;
+            font-size: clamp(0.9rem, 1.5vw, 1.8rem);
             color: white;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        @media (max-width: 1280px) {
+            .slide { padding: 3rem; }
+            .grid-layout { gap: 2.5rem; }
         }
 
         @media (max-width: 1024px) {
-            .slide {
-                padding: 2rem;
-            }
-
-            .glass-card {
-                padding: 2rem;
-            }
-
-            .title-slide h1 {
-                font-size: 3.5rem;
-            }
-
-            .title-slide h2 {
-                font-size: 2rem;
-            }
-
-            .slide-header {
-                font-size: 2.5rem;
-            }
-
-            .grid-layout {
-                gap: 2rem;
-            }
+            .slide { padding: 2rem; }
+            .glass-card { padding: 2rem; }
+            .grid-layout { gap: 2rem; }
+            .slide-image img { max-height: 55vh; }
         }
 
         @media (max-width: 768px) {
@@ -277,78 +275,47 @@
                 transform: none;
                 pointer-events: all;
                 display: none;
-                padding: 1.5rem !important;
-                padding-top: 5rem !important;
-                padding-bottom: 6rem !important;
+                padding: 1.25rem;
+                padding-top: 4.5rem;
+                padding-bottom: 6rem;
+                overflow-x: hidden;
             }
 
-            .slide.active {
-                display: flex;
-            }
+            .slide.active { display: flex; }
 
-            .slide-content {
-                padding: 0 !important;
-            }
+            .slide-content { padding: 0; width: 100%; }
 
             .glass-card {
-                padding: 1.5rem !important;
+                padding: 1.25rem;
                 border-radius: 16px;
             }
 
-            .title-slide h1 {
-                font-size: 2.2rem !important;
-            }
-
-            .title-slide h2 {
-                font-size: 1.4rem !important;
-            }
-
-            .title-slide p {
-                font-size: 1rem !important;
-            }
-
             .slide-header {
-                font-size: 1.6rem !important;
-                margin-bottom: 1.5rem !important;
                 text-align: center !important;
+                margin-bottom: 1.2rem;
             }
 
             .grid-layout {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1.25rem;
             }
 
-            .slide-image {
-                order: -1 !important;
-            }
+            .slide-image { order: -1 !important; }
 
             .slide-image img {
                 transform: none !important;
-                max-height: 35vh;
-            }
-
-            .features-list li {
-                font-size: 1rem !important;
-                padding: 0.7rem 1rem !important;
-                margin-bottom: 0.8rem !important;
+                max-height: 30vh;
             }
 
             .bento-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
+                gap: 0.6rem;
             }
 
-            .bento-item {
-                padding: 1rem !important;
-            }
-
-            .bento-item h3 {
-                font-size: 0.9rem !important;
-            }
+            .bento-item { padding: 0.75rem !important; }
 
             .slide-footer-text {
-                font-size: 1.1rem !important;
-                margin-top: 1.5rem !important;
+                margin-top: 1.25rem !important;
                 text-align: center !important;
             }
 
@@ -361,8 +328,8 @@
             }
 
             .btn {
-                width: 50px;
-                height: 50px;
+                width: 48px;
+                height: 48px;
                 background: rgba(45, 140, 255, 0.2);
             }
 
@@ -379,39 +346,25 @@
             }
 
             .cta-btn {
-                padding: 0.9rem 1.5rem !important;
-                font-size: 1.1rem !important;
+                padding: 0.9rem 1.5rem;
                 width: 100%;
                 text-align: center;
-                margin-top: 1.5rem !important;
+                margin-top: 1.25rem;
             }
 
-            .bg-glow,
-            .bg-glow-2 {
-                width: 250px;
-                height: 250px;
-            }
+            .bg-glow, .bg-glow-2 { width: 250px; height: 250px; }
 
-            /* Specific fix for slide 12 icons/steps */
             .slide:nth-child(12) div[style*="display: flex"] {
-                font-size: 1.2rem !important;
-                gap: 0.8rem !important;
-                margin: 1.5rem 0 !important;
-            }
-
-            .slide:nth-child(12) h2 {
-                font-size: 1.8rem !important;
+                font-size: 1.1rem !important;
+                gap: 0.6rem !important;
+                margin: 1.25rem 0 !important;
+                flex-wrap: wrap;
             }
         }
 
         @media (max-width: 480px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .title-slide h1 {
-                font-size: 1.8rem !important;
-            }
+            .slide { padding: 1rem; padding-top: 4rem; padding-bottom: 5.5rem; }
+            .bento-grid { grid-template-columns: 1fr; }
         }
 
         /* Controls */
@@ -531,160 +484,7 @@
             letter-spacing: 2px;
         }
 
-        @media (max-width: 1024px) {
-            .slide {
-                padding: 2rem;
-            }
-
-            .glass-card {
-                padding: 2rem;
-            }
-
-            .title-slide h1 {
-                font-size: 3.5rem;
-            }
-
-            .title-slide h2 {
-                font-size: 2rem;
-            }
-
-            .slide-header {
-                font-size: 2.5rem;
-            }
-
-            .grid-layout {
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                overflow-y: auto;
-                height: 100%;
-            }
-
-            .presentation {
-                height: auto;
-                min-height: 100vh;
-            }
-
-            .slide {
-                position: relative;
-                height: auto;
-                min-height: 100vh;
-                opacity: 1;
-                transform: none;
-                pointer-events: all;
-                display: none;
-                padding: 1.5rem;
-                padding-top: 4rem;
-                padding-bottom: 6rem;
-            }
-
-            .slide.active {
-                display: flex;
-            }
-
-            .glass-card {
-                padding: 1.5rem;
-                border-radius: 16px;
-            }
-
-            .title-slide h1 {
-                font-size: 2.5rem;
-            }
-
-            .title-slide h2 {
-                font-size: 1.5rem;
-            }
-
-            .title-slide p {
-                font-size: 1.1rem;
-            }
-
-            .slide-header {
-                font-size: 1.8rem;
-                margin-bottom: 2rem;
-                text-align: center !important;
-            }
-
-            .grid-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .slide-image {
-                order: -1 !important;
-            }
-
-            .slide-image img {
-                transform: none !important;
-                max-height: 40vh;
-            }
-
-            .features-list li {
-                font-size: 1.1rem;
-                padding: 0.8rem 1rem;
-            }
-
-            .bento-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-
-            .bento-item h3 {
-                font-size: 1.1rem;
-            }
-
-            .slide-footer-text {
-                font-size: 1.2rem;
-                margin-top: 2rem;
-                text-align: center !important;
-            }
-
-            .controls {
-                bottom: 1rem;
-                right: 1rem;
-                left: 1rem;
-                justify-content: space-between;
-            }
-
-            .btn {
-                width: 48px;
-                height: 48px;
-            }
-
-            .slide-indicator {
-                bottom: auto;
-                top: 1.5rem;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 1rem;
-            }
-
-            .cta-btn {
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
-                width: 100%;
-                text-align: center;
-            }
-
-            .bg-glow,
-            .bg-glow-2 {
-                width: 300px;
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .title-slide h1 {
-                font-size: 2rem;
-            }
-        }
+        /* Duplicate media queries removed — see consolidated blocks above */
     </style>
 </head>
 
