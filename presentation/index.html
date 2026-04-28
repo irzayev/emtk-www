@@ -232,139 +232,78 @@
             color: white;
         }
 
+        /* Responsive Design */
+        @media (max-width: 1440px) {
+            .title-slide h1 { font-size: 4rem; }
+            .title-slide h2 { font-size: 2rem; }
+            .slide-header { font-size: 3rem; }
+        }
+
+        @media (max-width: 1200px) {
+            .grid-layout { gap: 2rem; }
+            .slide-header { font-size: 2.5rem; }
+            .title-slide h1 { font-size: 3.5rem; }
+        }
+
         @media (max-width: 1024px) {
-            .slide {
-                padding: 2rem;
-            }
-
-            .glass-card {
-                padding: 2rem;
-            }
-
-            .title-slide h1 {
-                font-size: 3.5rem;
-            }
-
-            .title-slide h2 {
-                font-size: 2rem;
-            }
-
-            .slide-header {
-                font-size: 2.5rem;
-            }
-
-            .grid-layout {
-                gap: 2rem;
-            }
+            .slide { padding: 2rem; }
+            .title-slide h1 { font-size: 3rem; }
+            .title-slide h2 { font-size: 1.8rem; }
+            .slide-header { font-size: 2.2rem; }
+            .features-list li { font-size: 1.2rem; }
+            .slide-image img { max-height: 50vh; }
         }
 
         @media (max-width: 768px) {
-            body {
-                overflow-y: auto;
-                height: 100%;
-            }
-
-            .presentation {
-                height: auto;
-                min-height: 100vh;
-            }
-
+            body { overflow-y: auto; height: auto; }
+            .presentation { height: auto; min-height: 100dvh; }
+            
             .slide {
                 position: relative;
                 height: auto;
-                min-height: 100vh;
+                min-height: 100dvh;
                 opacity: 1;
                 transform: none;
                 pointer-events: all;
                 display: none;
-                padding: 1.5rem !important;
+                padding: 1.5rem 1.5rem 6rem 1.5rem !important;
+                align-items: flex-start;
                 padding-top: 5rem !important;
-                padding-bottom: 6rem !important;
             }
 
-            .slide.active {
-                display: flex;
-            }
-
-            .slide-content {
-                padding: 0 !important;
-            }
-
-            .glass-card {
-                padding: 1.5rem !important;
-                border-radius: 16px;
-            }
-
-            .title-slide h1 {
-                font-size: 2.2rem !important;
-            }
-
-            .title-slide h2 {
-                font-size: 1.4rem !important;
-            }
-
-            .title-slide p {
-                font-size: 1rem !important;
-            }
-
-            .slide-header {
-                font-size: 1.6rem !important;
-                margin-bottom: 1.5rem !important;
-                text-align: center !important;
-            }
+            .slide.active { display: flex; }
+            .slide-content { max-width: 100%; }
 
             .grid-layout {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 2rem;
+                text-align: center;
             }
 
-            .slide-image {
-                order: -1 !important;
-            }
+            .title-slide h1 { font-size: clamp(2rem, 8vw, 3rem) !important; }
+            .title-slide h2 { font-size: clamp(1.2rem, 5vw, 1.8rem) !important; }
+            .title-slide p { font-size: 1rem !important; }
+            .slide-header { font-size: 1.8rem !important; margin-bottom: 2rem !important; text-align: center !important; }
 
-            .slide-image img {
-                transform: none !important;
-                max-height: 35vh;
-            }
+            .slide-image { order: -1 !important; width: 100%; }
+            .slide-image img { transform: none !important; max-height: 35vh; width: auto; max-width: 100%; margin: 0 auto; display: block; }
 
-            .features-list li {
-                font-size: 1rem !important;
-                padding: 0.7rem 1rem !important;
-                margin-bottom: 0.8rem !important;
-            }
-
-            .bento-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-            }
-
-            .bento-item {
-                padding: 1rem !important;
-            }
-
-            .bento-item h3 {
-                font-size: 0.9rem !important;
-            }
-
-            .slide-footer-text {
-                font-size: 1.1rem !important;
-                margin-top: 1.5rem !important;
-                text-align: center !important;
-            }
+            .features-list li { font-size: 1rem !important; padding: 0.8rem 1rem !important; }
+            .bento-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .bento-item h3 { font-size: 0.9rem !important; }
 
             .controls {
                 bottom: 1rem;
                 right: 1rem;
                 left: 1rem;
                 justify-content: space-between;
-                gap: 0.5rem;
+                background: rgba(11, 31, 58, 0.5);
+                padding: 0.5rem;
+                border-radius: 40px;
+                backdrop-filter: blur(10px);
             }
 
-            .btn {
-                width: 50px;
-                height: 50px;
-                background: rgba(45, 140, 255, 0.2);
-            }
+            .btn { width: 44px; height: 44px; font-size: 1.2rem; }
 
             .slide-indicator {
                 bottom: auto;
@@ -375,315 +314,36 @@
                 background: rgba(11, 31, 58, 0.8);
                 padding: 0.4rem 1rem;
                 border-radius: 20px;
-                backdrop-filter: blur(4px);
             }
 
-            .cta-btn {
-                padding: 0.9rem 1.5rem !important;
-                font-size: 1.1rem !important;
-                width: 100%;
-                text-align: center;
-                margin-top: 1.5rem !important;
+            .cta-btn { padding: 1rem 2rem !important; font-size: 1.2rem !important; width: 100%; margin-top: 2rem !important; }
+            
+            /* Inner container padding resets */
+            .slide-content div[style*="padding"] {
+                padding: 1rem !important;
             }
 
-            .bg-glow,
-            .bg-glow-2 {
-                width: 250px;
-                height: 250px;
-            }
-
-            /* Specific fix for slide 12 icons/steps */
-            .slide:nth-child(12) div[style*="display: flex"] {
+            /* Slide 12 specific */
+            .slide:nth-child(12) .title-slide div[style*="display: flex"] {
                 font-size: 1.2rem !important;
                 gap: 0.8rem !important;
-                margin: 1.5rem 0 !important;
-            }
-
-            .slide:nth-child(12) h2 {
-                font-size: 1.8rem !important;
+                margin: 2rem 0 !important;
             }
         }
 
         @media (max-width: 480px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .title-slide h1 {
-                font-size: 1.8rem !important;
-            }
+            .bento-grid { grid-template-columns: 1fr; }
+            .title-slide h1 { font-size: 2rem !important; }
+            .slide-header { font-size: 1.6rem !important; }
+            .features-list li { font-size: 0.9rem !important; }
         }
 
-        /* Controls */
-        .controls {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            display: flex;
-            gap: 1rem;
-            z-index: 100;
-        }
-
-        .btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.2s;
-            backdrop-filter: blur(8px);
-        }
-
-        .btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
-        }
-
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
-            transition: width 0.3s ease;
-            z-index: 100;
-        }
-
-        /* Background Effects */
-        .bg-glow {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(45, 140, 255, 0.15) 0%, rgba(10, 31, 58, 0) 70%);
-            top: -300px;
-            right: -300px;
-            border-radius: 50%;
-            z-index: 1;
-            animation: pulse 8s infinite alternate;
-        }
-
-        .bg-glow-2 {
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(106, 92, 255, 0.15) 0%, rgba(10, 31, 58, 0) 70%);
-            bottom: -200px;
-            left: -200px;
-            border-radius: 50%;
-            z-index: 1;
-            animation: pulse 10s infinite alternate-reverse;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
-            color: white;
-            text-decoration: none;
-            padding: 1.2rem 3.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 50px;
-            margin-top: 3rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(45, 140, 255, 0.4);
-        }
-
-        .slide-footer-text {
-            text-align: center;
-            font-size: 1.5rem;
-            color: var(--accent-start);
-            margin-top: 3rem;
-            font-weight: 600;
-        }
-
-        .slide-indicator {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            z-index: 100;
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 1024px) {
-            .slide {
-                padding: 2rem;
-            }
-
-            .glass-card {
-                padding: 2rem;
-            }
-
-            .title-slide h1 {
-                font-size: 3.5rem;
-            }
-
-            .title-slide h2 {
-                font-size: 2rem;
-            }
-
-            .slide-header {
-                font-size: 2.5rem;
-            }
-
-            .grid-layout {
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                overflow-y: auto;
-                height: 100%;
-            }
-
-            .presentation {
-                height: auto;
-                min-height: 100vh;
-            }
-
-            .slide {
-                position: relative;
-                height: auto;
-                min-height: 100vh;
-                opacity: 1;
-                transform: none;
-                pointer-events: all;
-                display: none;
-                padding: 1.5rem;
-                padding-top: 4rem;
-                padding-bottom: 6rem;
-            }
-
-            .slide.active {
-                display: flex;
-            }
-
-            .glass-card {
-                padding: 1.5rem;
-                border-radius: 16px;
-            }
-
-            .title-slide h1 {
-                font-size: 2.5rem;
-            }
-
-            .title-slide h2 {
-                font-size: 1.5rem;
-            }
-
-            .title-slide p {
-                font-size: 1.1rem;
-            }
-
-            .slide-header {
-                font-size: 1.8rem;
-                margin-bottom: 2rem;
-                text-align: center !important;
-            }
-
-            .grid-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .slide-image {
-                order: -1 !important;
-            }
-
-            .slide-image img {
-                transform: none !important;
-                max-height: 40vh;
-            }
-
-            .features-list li {
-                font-size: 1.1rem;
-                padding: 0.8rem 1rem;
-            }
-
-            .bento-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-
-            .bento-item h3 {
-                font-size: 1.1rem;
-            }
-
-            .slide-footer-text {
-                font-size: 1.2rem;
-                margin-top: 2rem;
-                text-align: center !important;
-            }
-
-            .controls {
-                bottom: 1rem;
-                right: 1rem;
-                left: 1rem;
-                justify-content: space-between;
-            }
-
-            .btn {
-                width: 48px;
-                height: 48px;
-            }
-
-            .slide-indicator {
-                bottom: auto;
-                top: 1.5rem;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 1rem;
-            }
-
-            .cta-btn {
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
-                width: 100%;
-                text-align: center;
-            }
-
-            .bg-glow,
-            .bg-glow-2 {
-                width: 300px;
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .title-slide h1 {
-                font-size: 2rem;
-            }
+        @media (max-height: 700px) and (min-width: 769px) {
+            .slide { padding: 2rem; }
+            .slide-header { font-size: 2rem; margin-bottom: 1.5rem; }
+            .title-slide h1 { font-size: 3rem; }
+            .slide-image img { max-height: 45vh; }
+            .features-list li { margin-bottom: 0.8rem; padding: 0.6rem 1rem; }
         }
     </style>
 </head>
