@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="az">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap');
-        
+
         :root {
             --bg-color: #0B1F3A;
             --accent-start: #2D8CFF;
@@ -31,7 +32,9 @@
             overflow: hidden;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-family: 'Manrope', sans-serif;
         }
 
@@ -104,11 +107,13 @@
             margin-bottom: 1rem;
             line-height: 1.1;
         }
+
         .title-slide h2 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             font-weight: 400;
         }
+
         .title-slide p {
             font-size: 1.5rem;
             color: var(--text-muted);
@@ -131,23 +136,26 @@
         .features-list {
             list-style: none;
         }
+
         .features-list li {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 1.2rem;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             padding: 1rem 1.5rem;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s, background 0.3s;
         }
+
         .features-list li:hover {
             transform: translateX(10px);
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
         }
+
         .features-list li::before {
             content: '✓';
             display: inline-flex;
@@ -165,7 +173,7 @@
         .slide-image img {
             width: 100%;
             border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             border: 1px solid var(--card-border);
             transform: perspective(1000px) rotateY(-5deg);
             transition: transform 0.5s;
@@ -173,6 +181,7 @@
             object-fit: cover;
             object-position: top;
         }
+
         .slide-image img:hover {
             transform: perspective(1000px) rotateY(0deg) scale(1.02);
         }
@@ -185,6 +194,7 @@
         .result-list li::before {
             display: none;
         }
+
         .result-list li {
             font-size: 1.8rem;
             font-weight: bold;
@@ -210,14 +220,198 @@
             align-items: center;
             justify-content: center;
         }
+
         .bento-item:hover {
             transform: translateY(-5px);
             border-color: var(--accent-start);
             box-shadow: 0 10px 30px rgba(45, 140, 255, 0.15);
         }
+
         .bento-item h3 {
             font-size: 1.8rem;
             color: white;
+        }
+
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 2rem;
+            }
+
+            .glass-card {
+                padding: 2rem;
+            }
+
+            .title-slide h1 {
+                font-size: 3.5rem;
+            }
+
+            .title-slide h2 {
+                font-size: 2rem;
+            }
+
+            .slide-header {
+                font-size: 2.5rem;
+            }
+
+            .grid-layout {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                height: 100%;
+            }
+
+            .presentation {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .slide {
+                position: relative;
+                height: auto;
+                min-height: 100vh;
+                opacity: 1;
+                transform: none;
+                pointer-events: all;
+                display: none;
+                padding: 1.5rem !important;
+                padding-top: 5rem !important;
+                padding-bottom: 6rem !important;
+            }
+
+            .slide.active {
+                display: flex;
+            }
+
+            .slide-content {
+                padding: 0 !important;
+            }
+
+            .glass-card {
+                padding: 1.5rem !important;
+                border-radius: 16px;
+            }
+
+            .title-slide h1 {
+                font-size: 2.2rem !important;
+            }
+
+            .title-slide h2 {
+                font-size: 1.4rem !important;
+            }
+
+            .title-slide p {
+                font-size: 1rem !important;
+            }
+
+            .slide-header {
+                font-size: 1.6rem !important;
+                margin-bottom: 1.5rem !important;
+                text-align: center !important;
+            }
+
+            .grid-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .slide-image {
+                order: -1 !important;
+            }
+
+            .slide-image img {
+                transform: none !important;
+                max-height: 35vh;
+            }
+
+            .features-list li {
+                font-size: 1rem !important;
+                padding: 0.7rem 1rem !important;
+                margin-bottom: 0.8rem !important;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .bento-item {
+                padding: 1rem !important;
+            }
+
+            .bento-item h3 {
+                font-size: 0.9rem !important;
+            }
+
+            .slide-footer-text {
+                font-size: 1.1rem !important;
+                margin-top: 1.5rem !important;
+                text-align: center !important;
+            }
+
+            .controls {
+                bottom: 1rem;
+                right: 1rem;
+                left: 1rem;
+                justify-content: space-between;
+                gap: 0.5rem;
+            }
+
+            .btn {
+                width: 50px;
+                height: 50px;
+                background: rgba(45, 140, 255, 0.2);
+            }
+
+            .slide-indicator {
+                bottom: auto;
+                top: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 0.9rem;
+                background: rgba(11, 31, 58, 0.8);
+                padding: 0.4rem 1rem;
+                border-radius: 20px;
+                backdrop-filter: blur(4px);
+            }
+
+            .cta-btn {
+                padding: 0.9rem 1.5rem !important;
+                font-size: 1.1rem !important;
+                width: 100%;
+                text-align: center;
+                margin-top: 1.5rem !important;
+            }
+
+            .bg-glow,
+            .bg-glow-2 {
+                width: 250px;
+                height: 250px;
+            }
+
+            /* Specific fix for slide 12 icons/steps */
+            .slide:nth-child(12) div[style*="display: flex"] {
+                font-size: 1.2rem !important;
+                gap: 0.8rem !important;
+                margin: 1.5rem 0 !important;
+            }
+
+            .slide:nth-child(12) h2 {
+                font-size: 1.8rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .title-slide h1 {
+                font-size: 1.8rem !important;
+            }
         }
 
         /* Controls */
@@ -229,9 +423,10 @@
             gap: 1rem;
             z-index: 100;
         }
+
         .btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             width: 56px;
             height: 56px;
@@ -244,11 +439,12 @@
             transition: all 0.2s;
             backdrop-filter: blur(8px);
         }
+
         .btn:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
         }
-        
+
         .progress-bar {
             position: fixed;
             top: 0;
@@ -264,18 +460,19 @@
             position: absolute;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(45,140,255,0.15) 0%, rgba(10,31,58,0) 70%);
+            background: radial-gradient(circle, rgba(45, 140, 255, 0.15) 0%, rgba(10, 31, 58, 0) 70%);
             top: -300px;
             right: -300px;
             border-radius: 50%;
             z-index: 1;
             animation: pulse 8s infinite alternate;
         }
+
         .bg-glow-2 {
             position: absolute;
             width: 700px;
             height: 700px;
-            background: radial-gradient(circle, rgba(106,92,255,0.15) 0%, rgba(10,31,58,0) 70%);
+            background: radial-gradient(circle, rgba(106, 92, 255, 0.15) 0%, rgba(10, 31, 58, 0) 70%);
             bottom: -200px;
             left: -200px;
             border-radius: 50%;
@@ -284,8 +481,15 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.2); opacity: 1; }
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
         }
 
         .cta-btn {
@@ -302,9 +506,10 @@
             border: none;
             cursor: pointer;
         }
+
         .cta-btn:hover {
             transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(45,140,255,0.4);
+            box-shadow: 0 15px 30px rgba(45, 140, 255, 0.4);
         }
 
         .slide-footer-text {
@@ -325,8 +530,164 @@
             font-weight: 600;
             letter-spacing: 2px;
         }
+
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 2rem;
+            }
+
+            .glass-card {
+                padding: 2rem;
+            }
+
+            .title-slide h1 {
+                font-size: 3.5rem;
+            }
+
+            .title-slide h2 {
+                font-size: 2rem;
+            }
+
+            .slide-header {
+                font-size: 2.5rem;
+            }
+
+            .grid-layout {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                height: 100%;
+            }
+
+            .presentation {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .slide {
+                position: relative;
+                height: auto;
+                min-height: 100vh;
+                opacity: 1;
+                transform: none;
+                pointer-events: all;
+                display: none;
+                padding: 1.5rem;
+                padding-top: 4rem;
+                padding-bottom: 6rem;
+            }
+
+            .slide.active {
+                display: flex;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+
+            .title-slide h1 {
+                font-size: 2.5rem;
+            }
+
+            .title-slide h2 {
+                font-size: 1.5rem;
+            }
+
+            .title-slide p {
+                font-size: 1.1rem;
+            }
+
+            .slide-header {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+                text-align: center !important;
+            }
+
+            .grid-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .slide-image {
+                order: -1 !important;
+            }
+
+            .slide-image img {
+                transform: none !important;
+                max-height: 40vh;
+            }
+
+            .features-list li {
+                font-size: 1.1rem;
+                padding: 0.8rem 1rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .bento-item h3 {
+                font-size: 1.1rem;
+            }
+
+            .slide-footer-text {
+                font-size: 1.2rem;
+                margin-top: 2rem;
+                text-align: center !important;
+            }
+
+            .controls {
+                bottom: 1rem;
+                right: 1rem;
+                left: 1rem;
+                justify-content: space-between;
+            }
+
+            .btn {
+                width: 48px;
+                height: 48px;
+            }
+
+            .slide-indicator {
+                bottom: auto;
+                top: 1.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 1rem;
+            }
+
+            .cta-btn {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .bg-glow,
+            .bg-glow-2 {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .title-slide h1 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="progress-bar" id="progress"></div>
     <div class="bg-glow"></div>
@@ -334,14 +695,15 @@
     <div class="slide-indicator" id="indicator">01 / 12</div>
 
     <div class="presentation" id="presentation">
-        
+
         <!-- Slide 1 -->
         <div class="slide active">
             <div class="slide-content text-center">
                 <div class="glass-card title-slide" style="padding: 4rem; text-align: center;">
                     <h1 class="gradient-text" style="text-align: center;">eMTK.az</h1>
                     <h2 style="text-align: center;">Yaşayış komplekslərinin rəqəmsal idarəetməsi</h2>
-                    <p style="margin: 0 auto; text-align: center;">Maliyyəni, mənzilləri və bütün prosesləri bir sistemdə idarə edin</p>
+                    <p style="margin: 0 auto; text-align: center;">Maliyyəni, mənzilləri və bütün prosesləri bir
+                        sistemdə idarə edin</p>
                 </div>
             </div>
         </div>
@@ -350,10 +712,12 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div class="slide-image" style="order: -1;">
-                    <img src="assets/screens/ktarixce.png" alt="Problemlər" style="transform: perspective(1000px) rotateY(5deg);" />
+                    <img src="assets/screens/ktarixce.png" alt="Problemlər"
+                        style="transform: perspective(1000px) rotateY(5deg);" />
                 </div>
                 <div>
-                    <h1 class="slide-header" style="text-align: left;">Yaşayış komplekslərinin idarə olunmasında <span class="gradient-text">problemlər</span></h1>
+                    <h1 class="slide-header" style="text-align: left;">Yaşayış komplekslərinin idarə olunmasında <span
+                            class="gradient-text">problemlər</span></h1>
                     <div class="glass-card" style="padding: 3rem;">
                         <ul class="features-list problem-list">
                             <li>Ödənişlərin itməsi</li>
@@ -370,34 +734,47 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div>
-                    <h1 class="slide-header" style="text-align: left;">Vahid <span class="gradient-text">eMTK</span> sistemi</h1>
+                    <h1 class="slide-header" style="text-align: left;">Vahid <span class="gradient-text">eMTK</span>
+                        sistemi</h1>
                     <div class="bento-grid">
-                        <div class="bento-item" style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
-                            <span class="material-symbols-outlined" style="font-size: 28px; color: #fff;">account_balance_wallet</span>
+                        <div class="bento-item"
+                            style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
+                            <span class="material-symbols-outlined"
+                                style="font-size: 28px; color: #fff;">account_balance_wallet</span>
                             <h3 style="margin: 0;">Maliyyə</h3>
                         </div>
-                        <div class="bento-item" style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
+                        <div class="bento-item"
+                            style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
                             <span class="material-symbols-outlined" style="font-size: 28px; color: #fff;">group</span>
                             <h3 style="margin: 0;">Sakinlər</h3>
                         </div>
-                        <div class="bento-item" style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
-                            <span class="material-symbols-outlined" style="font-size: 28px; color: #fff;">payments</span>
+                        <div class="bento-item"
+                            style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
+                            <span class="material-symbols-outlined"
+                                style="font-size: 28px; color: #fff;">payments</span>
                             <h3 style="margin: 0;">Ödənişlər</h3>
                         </div>
-                        <div class="bento-item" style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
-                            <span class="material-symbols-outlined" style="font-size: 28px; color: #fff;">settings</span>
+                        <div class="bento-item"
+                            style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
+                            <span class="material-symbols-outlined"
+                                style="font-size: 28px; color: #fff;">settings</span>
                             <h3 style="margin: 0;">İdarəetmə</h3>
                         </div>
-                        <div class="bento-item" style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
-                            <span class="material-symbols-outlined" style="font-size: 28px; color: #fff;">bar_chart</span>
+                        <div class="bento-item"
+                            style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
+                            <span class="material-symbols-outlined"
+                                style="font-size: 28px; color: #fff;">bar_chart</span>
                             <h3 style="margin: 0;">Hesabatlar</h3>
                         </div>
-                        <div class="bento-item" style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
-                            <span class="material-symbols-outlined" style="font-size: 28px; color: #fff;">notifications</span>
+                        <div class="bento-item"
+                            style="padding: 1.5rem; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap;">
+                            <span class="material-symbols-outlined"
+                                style="font-size: 28px; color: #fff;">notifications</span>
                             <h3 style="margin: 0;">Bildirişlər</h3>
                         </div>
                     </div>
-                    <div class="slide-footer-text" style="text-align: center; font-size: 2.5rem; margin-top: 4rem;">Hamısı bir interfeysdə!</div>
+                    <div class="slide-footer-text result-footer-text"
+                        style="text-align: center; font-size: 2.5rem; margin-top: 4rem;">Hamısı bir interfeysdə!</div>
                 </div>
                 <div class="slide-image">
                     <img src="assets/screens/kdashboard-dark.png" alt="eMTK Dashboard" />
@@ -409,10 +786,12 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div class="slide-image" style="order: -1;">
-                    <img src="assets/screens/kxercler.png" alt="Xərclər" style="transform: perspective(1000px) rotateY(5deg);" />
+                    <img src="assets/screens/kxercler.png" alt="Xərclər"
+                        style="transform: perspective(1000px) rotateY(5deg);" />
                 </div>
                 <div>
-                    <h1 class="slide-header" style="text-align: left;">Maliyyə <span class="gradient-text">tam nəzarət altındadır</span></h1>
+                    <h1 class="slide-header" style="text-align: left;">Maliyyə <span class="gradient-text">tam nəzarət
+                            altındadır</span></h1>
                     <div class="glass-card" style="padding: 3rem;">
                         <ul class="features-list">
                             <li>Bütün ödənişlər avtomatik qeyd olunur</li>
@@ -429,14 +808,24 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div>
-                    <h1 class="slide-header" style="text-align: left;">Rahat <span class="gradient-text">ödəniş üsulları</span></h1>
+                    <h1 class="slide-header" style="text-align: left;">Rahat <span class="gradient-text">ödəniş
+                            üsulları</span></h1>
                     <div class="bento-grid">
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Nağd</h3></div>
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Bank kartları</h3></div>
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Apple Pay</h3></div>
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Google Pay</h3></div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Nağd</h3>
+                        </div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Bank kartları</h3>
+                        </div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Apple Pay</h3>
+                        </div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Google Pay</h3>
+                        </div>
                     </div>
-                    <div class="slide-footer-text" style="text-align: left;">Sakinlər üçün rahat — sizin üçün daha şəffaflıq</div>
+                    <div class="slide-footer-text" style="text-align: left;">Sakinlər üçün rahat — sizin üçün daha
+                        şəffaflıq</div>
                 </div>
                 <div class="slide-image">
                     <img src="assets/screens/kodenisler.png" alt="Ödənişlər" />
@@ -448,10 +837,12 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div class="slide-image" style="order: -1;">
-                    <img src="assets/screens/kisveelan.png" alt="Bildirişlər" style="transform: perspective(1000px) rotateY(5deg);" />
+                    <img src="assets/screens/kisveelan.png" alt="Bildirişlər"
+                        style="transform: perspective(1000px) rotateY(5deg);" />
                 </div>
                 <div>
-                    <h1 class="slide-header" style="text-align: left;">Avtomatik <span class="gradient-text">kommunikasiya</span></h1>
+                    <h1 class="slide-header" style="text-align: left;">Avtomatik <span
+                            class="gradient-text">kommunikasiya</span></h1>
                     <div class="glass-card" style="padding: 3rem;">
                         <ul class="features-list">
                             <li>WhatsApp bildirişləri</li>
@@ -459,7 +850,8 @@
                             <li>Borclar üçün xatırlatmalar</li>
                             <li>Ödəniş təsdiqləri</li>
                         </ul>
-                        <div class="slide-footer-text" style="margin-top: 2rem; text-align: left;">Sistem sizin yerinizə işləyir</div>
+                        <div class="slide-footer-text" style="margin-top: 2rem; text-align: left;">Sistem sizin yerinizə
+                            işləyir</div>
                     </div>
                 </div>
             </div>
@@ -469,13 +861,24 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div>
-                    <h1 class="slide-header" style="text-align: left;">Yaşayış kompleksinin <span class="gradient-text">tam idarə olunması</span></h1>
+                    <h1 class="slide-header" style="text-align: left;">Yaşayış kompleksinin <span
+                            class="gradient-text">tam idarə olunması</span></h1>
                     <div class="bento-grid">
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Maaşlar</h3></div>
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Xərclər</h3></div>
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Hesabatlar</h3></div>
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Obyektlər</h3></div>
-                        <div class="bento-item" style="padding: 1.5rem;"><h3>Kommunal xidmətlər</h3></div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Maaşlar</h3>
+                        </div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Xərclər</h3>
+                        </div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Hesabatlar</h3>
+                        </div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Obyektlər</h3>
+                        </div>
+                        <div class="bento-item" style="padding: 1.5rem;">
+                            <h3>Kommunal xidmətlər</h3>
+                        </div>
                     </div>
                     <div class="slide-footer-text" style="text-align: left;">5 sistem əvəzinə 1 sistem</div>
                 </div>
@@ -489,10 +892,12 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div class="slide-image" style="order: -1;">
-                    <img src="assets/screens/khesabfaktura.png" alt="Hesab faktura" style="transform: perspective(1000px) rotateY(5deg);" />
+                    <img src="assets/screens/khesabfaktura.png" alt="Hesab faktura"
+                        style="transform: perspective(1000px) rotateY(5deg);" />
                 </div>
                 <div>
-                    <h1 class="slide-header" style="text-align: left;">Sənədlər <span class="gradient-text">əl əməyisiz</span></h1>
+                    <h1 class="slide-header" style="text-align: left;">Sənədlər <span class="gradient-text">əl
+                            əməyisiz</span></h1>
                     <div class="glass-card" style="padding: 3rem;">
                         <ul class="features-list">
                             <li>Çeklər</li>
@@ -509,7 +914,8 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div>
-                    <h1 class="slide-header" style="text-align: left;"><span class="gradient-text">Bulud əsaslı</span> həll</h1>
+                    <h1 class="slide-header" style="text-align: left;"><span class="gradient-text">Bulud əsaslı</span>
+                        həll</h1>
                     <div class="glass-card" style="padding: 3rem;">
                         <ul class="features-list">
                             <li>Serverə ehtiyac yoxdur</li>
@@ -529,10 +935,12 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div class="slide-image" style="order: -1;">
-                    <img src="assets/screens/ksettings.png" alt="Təhlükəsizlik" style="transform: perspective(1000px) rotateY(5deg);" />
+                    <img src="assets/screens/ksettings.png" alt="Təhlükəsizlik"
+                        style="transform: perspective(1000px) rotateY(5deg);" />
                 </div>
                 <div>
-                    <h1 class="slide-header" style="text-align: left;">Təhlükəsizlik və <span class="gradient-text">etibarlılıq</span></h1>
+                    <h1 class="slide-header" style="text-align: left;">Təhlükəsizlik və <span
+                            class="gradient-text">etibarlılıq</span></h1>
                     <div class="glass-card" style="padding: 3rem;">
                         <ul class="features-list">
                             <li>Məlumatların şifrələnməsi</li>
@@ -551,7 +959,8 @@
                     <h1 class="slide-header" style="text-align: left;"><span class="gradient-text">Nəticə</span></h1>
                     <div class="glass-card" style="padding: 3rem;">
                         <ul class="features-list result-list" style="padding: 0;">
-                            <li style="justify-content: flex-start;"><span class="gradient-text">↑</span> Ödəniş yığımı</li>
+                            <li style="justify-content: flex-start;"><span class="gradient-text">↑</span> Ödəniş yığımı
+                            </li>
                             <li style="justify-content: flex-start; color: #FF8F8F;"><span>↓</span> Səhvlər</li>
                             <li style="justify-content: flex-start; color: #FF8F8F;"><span>↓</span> Yük</li>
                             <li style="justify-content: flex-start;"><span class="gradient-text">↑</span> Şəffaflıq</li>
@@ -568,10 +977,13 @@
         <div class="slide">
             <div class="slide-content grid-layout">
                 <div class="text-center">
-                    <div class="glass-card title-slide" style="padding: 3rem; display: flex; flex-direction: column; align-items: center;">
-                        <h2 style="font-size: 3rem; line-height: 1.2;">Sistemi real işlək vəziyyətdə görməyə <span class="gradient-text">hazırsınız?</span></h2>
-                        
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 3rem 0; font-size: 2.2rem; font-weight: bold;">
+                    <div class="glass-card title-slide"
+                        style="padding: 3rem; display: flex; flex-direction: column; align-items: center;">
+                        <h2 style="font-size: 3rem; line-height: 1.2;">Sistemi real işlək vəziyyətdə görməyə <span
+                                class="gradient-text">hazırsınız?</span></h2>
+
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 3rem 0; font-size: 2.2rem; font-weight: bold;">
                             <span>Demo</span>
                             <span style="color: var(--accent-start); font-size: 1.5rem;">❯</span>
                             <span>Pilot</span>
@@ -603,10 +1015,22 @@
 
         function updateSlides() {
             slides.forEach((slide, index) => {
-                if (index === currentSlide) {
-                    slide.classList.add('active');
+                if (window.innerWidth > 768) {
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                        slide.style.display = 'flex';
+                    } else {
+                        slide.classList.remove('active');
+                        slide.style.display = 'flex';
+                    }
                 } else {
-                    slide.classList.remove('active');
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                        slide.style.display = 'flex';
+                    } else {
+                        slide.classList.remove('active');
+                        slide.style.display = 'none';
+                    }
                 }
             });
 
@@ -616,6 +1040,11 @@
 
             // Update indicator
             indicator.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${slides.length}`;
+
+            // Scroll to top on slide change for mobile
+            if (window.innerWidth <= 768) {
+                window.scrollTo(0, 0);
+            }
         }
 
         function nextSlide() {
@@ -641,8 +1070,42 @@
             }
         });
 
+        // Touch Swipe Support
+        let touchstartX = 0;
+        let touchendX = 0;
+        let touchstartY = 0;
+        let touchendY = 0;
+
+        function handleGesture() {
+            const dx = touchendX - touchstartX;
+            const dy = touchendY - touchstartY;
+
+            // horizontal swipe
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+                if (touchendX < touchstartX) nextSlide();
+                if (touchendX > touchstartX) prevSlide();
+            }
+        }
+
+        document.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+            touchstartY = e.changedTouches[0].screenY;
+        }, false);
+
+        document.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            touchendY = e.changedTouches[0].screenY;
+            handleGesture();
+        }, false);
+
+        // Resize handler to fix transition issues
+        window.addEventListener('resize', () => {
+            updateSlides();
+        });
+
         // Initialize
         updateSlides();
     </script>
 </body>
+
 </html>
